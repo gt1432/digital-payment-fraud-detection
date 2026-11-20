@@ -5,11 +5,11 @@ enableXsrfProtection = false
 address = "0.0.0.0"
 
 [theme]
-base = "dark"
-primaryColor = "#FFFFFF"
-backgroundColor = "#000000"
-secondaryBackgroundColor = "#080808"
-textColor = "#FFFFFF"
+base = "light"
+primaryColor = "#00ED64"
+backgroundColor = "#F9FBFA"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#001E2B"
 font = "sans serif"
 
 [browser]

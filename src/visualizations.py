@@ -1,6 +1,6 @@
 ﻿"""
 Digital Payment Fraud Detection - Visualization Module
-SpaceX-Inspired Dark Minimalist Theme (#000000)
+MongoDB Dual-Mode Design System
 Author: Senior ML Engineer & UI/UX Designer
 """
 import plotly.graph_objects as go
@@ -9,81 +9,84 @@ import pandas as pd
 import numpy as np
 from typing import Dict, Any, Optional
 
-SPACEX_THEME = {
-    'bg': '#000000',
-    'card_bg': '#0A0A0A',
-    'grid': '#1A1A1A',
-    'border': '#262626',
-    'text': '#FFFFFF',
-    'text_muted': '#8E8E93',
-    'white': '#FFFFFF',
-    'red': '#FF453A',
-    'green': '#30D158',
-    'orange': '#FF9F0A',
-    'blue': '#0A84FF',
+MONGODB_THEME = {
+    'bg': '#FFFFFF',
+    'card_bg': '#FFFFFF',
+    'grid': '#F0F3F2',
+    'border': '#E8EDEB',
+    'text': '#001E2B',
+    'text_muted': '#5C6C75',
+    'green': '#00ED64',
+    'green_dark': '#00684A',
+    'green_soft': '#EDFCF2',
+    'teal_deep': '#001E2B',
+    'purple': '#6C47FF',
+    'orange': '#FA541C',
+    'blue': '#0068FF',
+    'red': '#CF1322',
     'font': 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
 }
 
-def apply_spacex_layout(fig: go.Figure, title: str = "", height: int = 400) -> go.Figure:
+def apply_mongodb_layout(fig: go.Figure, title: str = "", height: int = 400) -> go.Figure:
     """
-    Applies pure black SpaceX industrial minimalist aesthetics to any Plotly figure.
+    Applies MongoDB clean documentation & analytics styling to any Plotly figure.
     """
     fig.update_layout(
         title={
-            'text': title.upper(),
+            'text': title,
             'y': 0.95,
-            'x': 0.05,
+            'x': 0.04,
             'xanchor': 'left',
             'yanchor': 'top',
             'font': {
-                'family': SPACEX_THEME['font'],
-                'size': 13,
-                'color': SPACEX_THEME['text'],
-                'weight': 700
+                'family': MONGODB_THEME['font'],
+                'size': 14,
+                'color': MONGODB_THEME['text'],
+                'weight': 600
             }
         },
-        paper_bgcolor=SPACEX_THEME['bg'],
-        plot_bgcolor=SPACEX_THEME['bg'],
-        font=dict(family=SPACEX_THEME['font'], color=SPACEX_THEME['text'], size=11),
-        margin=dict(l=40, r=40, t=60, b=40),
+        paper_bgcolor=MONGODB_THEME['bg'],
+        plot_bgcolor=MONGODB_THEME['bg'],
+        font=dict(family=MONGODB_THEME['font'], color=MONGODB_THEME['text'], size=11),
+        margin=dict(l=40, r=40, t=55, b=40),
         height=height,
         hovermode='closest',
         hoverlabel=dict(
-            bgcolor='#141414',
-            bordercolor=SPACEX_THEME['border'],
-            font=dict(color=SPACEX_THEME['text'], family=SPACEX_THEME['font'], size=12)
+            bgcolor='#001E2B',
+            bordercolor='#00684A',
+            font=dict(color='#FFFFFF', family=MONGODB_THEME['font'], size=12)
         ),
         legend=dict(
-            font=dict(color=SPACEX_THEME['text_muted'], size=11),
+            font=dict(color=MONGODB_THEME['text_muted'], size=11),
             orientation='h',
             yanchor='bottom',
             y=1.02,
             xanchor='right',
             x=1,
-            bgcolor='rgba(0,0,0,0)'
+            bgcolor='rgba(255,255,255,0)'
         )
     )
     fig.update_xaxes(
         showgrid=True,
-        gridcolor=SPACEX_THEME['grid'],
+        gridcolor=MONGODB_THEME['grid'],
         gridwidth=1,
         zeroline=False,
-        linecolor=SPACEX_THEME['border'],
-        tickfont=dict(color=SPACEX_THEME['text_muted'], size=10)
+        linecolor=MONGODB_THEME['border'],
+        tickfont=dict(color=MONGODB_THEME['text_muted'], size=10)
     )
     fig.update_yaxes(
         showgrid=True,
-        gridcolor=SPACEX_THEME['grid'],
+        gridcolor=MONGODB_THEME['grid'],
         gridwidth=1,
         zeroline=False,
-        linecolor=SPACEX_THEME['border'],
-        tickfont=dict(color=SPACEX_THEME['text_muted'], size=10)
+        linecolor=MONGODB_THEME['border'],
+        tickfont=dict(color=MONGODB_THEME['text_muted'], size=10)
     )
     return fig
 
 def plot_class_distribution(summary: Optional[Dict[str, Any]] = None, df: Optional[pd.DataFrame] = None) -> go.Figure:
     """
-    1. Genuine vs Fraudulent Transaction Distribution (SpaceX Donut Chart).
+    1. Genuine vs Fraudulent Transaction Distribution (MongoDB Emerald Donut).
     """
     if summary:
         genuine = summary.get('total_genuine', 6354407)
@@ -96,161 +99,152 @@ def plot_class_distribution(summary: Optional[Dict[str, Any]] = None, df: Option
         
     total = genuine + fraud
     fraud_pct = (fraud / total) * 100
-    genuine_pct = (genuine / total) * 100
     
     fig = go.Figure(data=[go.Pie(
-        labels=['GENUINE TRANSACTIONS', 'FRAUDULENT TRANSACTIONS'],
+        labels=['Genuine Operations', 'Fraudulent Attacks'],
         values=[genuine, fraud],
-        hole=0.68,
+        hole=0.72,
         marker=dict(
-            colors=['#FFFFFF', SPACEX_THEME['red']],
-            line=dict(color=SPACEX_THEME['bg'], width=2)
+            colors=[MONGODB_THEME['green_dark'], MONGODB_THEME['orange']],
+            line=dict(color='#FFFFFF', width=2)
         ),
         textinfo='percent',
         hoverinfo='label+value+percent',
-        textfont=dict(family=SPACEX_THEME['font'], size=12, color='#000000')
+        textfont=dict(family=MONGODB_THEME['font'], size=12, color='#FFFFFF')
     )])
     
     fig.add_annotation(
-        text=f"<b>{fraud_pct:.3f}%</b><br><span style='font-size:10px;color:#8E8E93;'>FRAUD RATE</span>",
+        text=f"<b style='font-size:22px;color:#001E2B;'>{fraud_pct:.3f}%</b><br><span style='font-size:11px;color:#5C6C75;font-weight:600;'>FRAUD RATIO</span>",
         x=0.5, y=0.5,
-        font=dict(size=18, color=SPACEX_THEME['text'], family=SPACEX_THEME['font']),
+        font=dict(family=MONGODB_THEME['font']),
         showarrow=False
     )
     
-    return apply_spacex_layout(fig, "CLASS DISTRIBUTION (GENUINE VS FRAUD)", height=350)
+    return apply_mongodb_layout(fig, "Class Distribution (Genuine vs Fraud)", height=340)
 
 def plot_fraud_by_type(summary: Optional[Dict[str, Any]] = None, df: Optional[pd.DataFrame] = None) -> go.Figure:
     """
-    2. Fraud Transactions by Transaction Type (Stacked / Grouped Bar).
+    2. Fraud Transactions by Transaction Type (MongoDB Bar Chart).
     """
     if summary and 'transaction_types' in summary and 'fraud_by_type' in summary:
         types = list(summary['transaction_types'].keys())
-        total_counts = [summary['transaction_types'][t] for t in types]
         fraud_counts = [summary['fraud_by_type'].get(t, 0) for t in types]
     elif df is not None:
-        grouped = df.groupby('type').agg(total=('isFraud', 'count'), fraud=('isFraud', 'sum')).reset_index()
+        grouped = df.groupby('type').agg(fraud=('isFraud', 'sum')).reset_index()
         types = grouped['type'].tolist()
-        total_counts = grouped['total'].tolist()
         fraud_counts = grouped['fraud'].tolist()
     else:
         types = ['CASH_OUT', 'PAYMENT', 'CASH_IN', 'TRANSFER', 'DEBIT']
-        total_counts = [2237500, 2151495, 1399284, 532909, 41432]
         fraud_counts = [4116, 0, 0, 4097, 0]
         
     fig = go.Figure()
+    bar_colors = [MONGODB_THEME['orange'] if c > 0 else MONGODB_THEME['border'] for c in fraud_counts]
+    
     fig.add_trace(go.Bar(
         x=types,
         y=fraud_counts,
-        name='CONFIRMED FRAUD',
-        marker=dict(color=SPACEX_THEME['red'], line=dict(color=SPACEX_THEME['red'], width=1)),
+        name='Confirmed Fraud',
+        marker=dict(color=bar_colors, line=dict(color=MONGODB_THEME['border'], width=1)),
         text=[f"{c:,}" for c in fraud_counts],
         textposition='outside',
-        textfont=dict(color=SPACEX_THEME['text'], size=10)
+        textfont=dict(color=MONGODB_THEME['text'], size=11, family=MONGODB_THEME['font'])
     ))
     
-    return apply_spacex_layout(fig, "FRAUD INCIDENCE BY TRANSACTION TYPE", height=350)
+    return apply_mongodb_layout(fig, "Fraud Incidents by Operation Type", height=340)
 
 def plot_amount_distribution(df: pd.DataFrame) -> go.Figure:
     """
-    3. Transaction Amount Distribution (Log transformed comparison).
+    3. Transaction Amount Distribution (Log Scale Boxplot).
     """
     df_plot = df[['amount', 'isFraud']].copy()
     df_plot['log_amount'] = np.log10(np.clip(df_plot['amount'], 1.0, None))
-    df_plot['Label'] = df_plot['isFraud'].map({0: 'GENUINE', 1: 'FRAUDULENT'})
     
     fig = go.Figure()
     fig.add_trace(go.Box(
         x=df_plot[df_plot['isFraud'] == 0]['log_amount'],
-        name='GENUINE',
-        marker_color='#FFFFFF',
+        name='Genuine',
+        marker_color=MONGODB_THEME['green_dark'],
         boxpoints='outliers',
         jitter=0.2,
-        line=dict(width=1.2, color='#FFFFFF')
+        line=dict(width=1.5, color=MONGODB_THEME['green_dark'])
     ))
     fig.add_trace(go.Box(
         x=df_plot[df_plot['isFraud'] == 1]['log_amount'],
-        name='FRAUDULENT',
-        marker_color=SPACEX_THEME['red'],
+        name='Fraudulent',
+        marker_color=MONGODB_THEME['orange'],
         boxpoints='outliers',
         jitter=0.2,
-        line=dict(width=1.2, color=SPACEX_THEME['red'])
+        line=dict(width=1.5, color=MONGODB_THEME['orange'])
     ))
     
-    fig.update_xaxes(title_text="LOG10(AMOUNT IN USD)", tickvals=[1, 2, 3, 4, 5, 6, 7], ticktext=['$10', '$100', '$1K', '$10K', '$100K', '$1M', '$10M'])
-    return apply_spacex_layout(fig, "TRANSACTION VALUE DISTRIBUTION (LOG SCALE)", height=350)
+    fig.update_xaxes(title_text="Log10(Amount in USD)", tickvals=[1, 2, 3, 4, 5, 6, 7], ticktext=['$10', '$100', '$1K', '$10K', '$100K', '$1M', '$10M'])
+    return apply_mongodb_layout(fig, "Transaction Value Spectrum (Log Scale)", height=340)
 
 def plot_fraud_trends_by_step(summary: Optional[Dict[str, Any]] = None, df: Optional[pd.DataFrame] = None) -> go.Figure:
     """
-    4. Fraud Trends Across Steps / Hours of Day.
+    4. Fraud Trends Across Steps / Hours of Day (MongoDB Smooth Line).
     """
     if summary and 'hourly_fraud' in summary:
         hours = list(range(24))
         fraud_trend = [summary['hourly_fraud'].get(str(h), summary['hourly_fraud'].get(h, 0)) for h in hours]
-        total_trend = [summary['hourly_total'].get(str(h), summary['hourly_total'].get(h, 0)) for h in hours]
     elif df is not None:
         df_copy = df.copy()
         df_copy['hour'] = df_copy['step'] % 24
-        grouped = df_copy.groupby('hour').agg(total=('isFraud', 'count'), fraud=('isFraud', 'sum')).reset_index()
+        grouped = df_copy.groupby('hour').agg(fraud=('isFraud', 'sum')).reset_index()
         hours = grouped['hour'].tolist()
         fraud_trend = grouped['fraud'].tolist()
-        total_trend = grouped['total'].tolist()
     else:
         hours = list(range(24))
         fraud_trend = [340 + int(20 * np.sin(h)) for h in hours]
-        total_trend = [250000 + int(50000 * np.sin(h)) for h in hours]
         
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=hours,
         y=fraud_trend,
         mode='lines+markers',
-        name='FRAUD CASES',
-        line=dict(color=SPACEX_THEME['red'], width=2),
-        marker=dict(size=5, color=SPACEX_THEME['red'])
+        name='Fraud Volume',
+        line=dict(color=MONGODB_THEME['orange'], width=2.5, shape='spline'),
+        marker=dict(size=6, color=MONGODB_THEME['orange'])
     ))
     
-    fig.update_xaxes(title_text="HOUR OF DAY (0 - 23 UTC)", dtick=2)
-    fig.update_yaxes(title_text="FRAUDULENT COUNT")
-    return apply_spacex_layout(fig, "DIURNAL FRAUD FREQUENCY SPECTRUM", height=350)
+    fig.update_xaxes(title_text="Hour of Day (0 - 23 UTC)", dtick=2)
+    fig.update_yaxes(title_text="Fraud Frequency")
+    return apply_mongodb_layout(fig, "Diurnal Fraud Rhythm", height=340)
 
 def plot_balance_analysis(df: pd.DataFrame) -> go.Figure:
     """
-    5. Sender & Receiver Balance Discrepancy Scatter.
+    5. Balance Dynamics Scatter (Sender Drain vs Recipient Gain).
     """
     sample_vis = df.sample(n=min(len(df), 2000), random_state=42).copy()
     sample_vis['orig_drain'] = sample_vis['oldbalanceOrg'] - sample_vis['newbalanceOrig']
     sample_vis['dest_gain'] = sample_vis['newbalanceDest'] - sample_vis['oldbalanceDest']
     
     fig = go.Figure()
-    
-    # Genuine points
     gen = sample_vis[sample_vis['isFraud'] == 0]
     fig.add_trace(go.Scatter(
         x=np.log10(np.clip(gen['orig_drain'], 1.0, None)),
         y=np.log10(np.clip(gen['dest_gain'], 1.0, None)),
         mode='markers',
-        name='GENUINE',
-        marker=dict(color='#FFFFFF', size=3, opacity=0.3)
+        name='Genuine',
+        marker=dict(color=MONGODB_THEME['green_dark'], size=4, opacity=0.35)
     ))
     
-    # Fraud points
     fra = sample_vis[sample_vis['isFraud'] == 1]
     fig.add_trace(go.Scatter(
         x=np.log10(np.clip(fra['orig_drain'], 1.0, None)),
         y=np.log10(np.clip(fra['dest_gain'], 1.0, None)),
         mode='markers',
-        name='FRAUDULENT',
-        marker=dict(color=SPACEX_THEME['red'], size=6, symbol='x', opacity=0.9)
+        name='Fraudulent',
+        marker=dict(color=MONGODB_THEME['orange'], size=7, symbol='diamond', opacity=0.9)
     ))
     
-    fig.update_xaxes(title_text="LOG10(SENDER BALANCE DRAIN)")
-    fig.update_yaxes(title_text="LOG10(RECEIVER BALANCE GAIN)")
-    return apply_spacex_layout(fig, "BALANCE DYNAMICS: SENDER DRAIN VS RECIPIENT ACCUMULATION", height=380)
+    fig.update_xaxes(title_text="Log10(Sender Account Drain)")
+    fig.update_yaxes(title_text="Log10(Recipient Balance Gain)")
+    return apply_mongodb_layout(fig, "Ledger Balance Discrepancy Map", height=380)
 
 def plot_correlation_heatmap(df: pd.DataFrame) -> go.Figure:
     """
-    6. Feature Correlation Heatmap (Industrial Monochrome).
+    6. Feature Correlation Heatmap (MongoDB Emerald Mint Gradient).
     """
     num_cols = ['amount', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'isFraud']
     avail = [c for c in num_cols if c in df.columns]
@@ -261,34 +255,33 @@ def plot_correlation_heatmap(df: pd.DataFrame) -> go.Figure:
         x=corr.columns,
         y=corr.columns,
         colorscale=[
-            [0.0, '#000000'],
-            [0.5, '#262626'],
-            [0.8, '#8E8E93'],
-            [1.0, '#FFFFFF']
+            [0.0, '#FFFFFF'],
+            [0.3, '#EDFCF2'],
+            [0.7, '#00ED64'],
+            [1.0, '#00684A']
         ],
         text=corr.values,
         texttemplate="%{text}",
-        textfont=dict(family=SPACEX_THEME['font'], size=11, color='#FFFFFF'),
+        textfont=dict(family=MONGODB_THEME['font'], size=11, color='#001E2B'),
         colorbar=dict(
-            title=dict(text='CORR', font=dict(color=SPACEX_THEME['text_muted'], size=10)),
-            tickfont=dict(color=SPACEX_THEME['text_muted'], size=9)
+            title=dict(text='Corr', font=dict(color=MONGODB_THEME['text_muted'], size=10)),
+            tickfont=dict(color=MONGODB_THEME['text_muted'], size=9)
         )
     ))
-    return apply_spacex_layout(fig, "TELEMETRY CORRELATION MATRIX", height=380)
+    return apply_mongodb_layout(fig, "Feature Correlation Matrix", height=380)
 
 def plot_model_comparison(metrics_payload: Dict[str, Any]) -> go.Figure:
     """
-    7. Multi-Algorithm Performance Comparison Matrix.
+    7. Multi-Algorithm Evaluation Benchmark (MongoDB Category Accents).
     """
     models_dict = metrics_payload.get('models', {})
     model_names = list(models_dict.keys())
     
     metric_keys = ['accuracy', 'precision', 'recall', 'f1_score', 'roc_auc']
-    display_names = ['ACCURACY', 'PRECISION', 'RECALL', 'F1-SCORE', 'ROC-AUC']
-    colors = ['#FFFFFF', '#8E8E93', SPACEX_THEME['green'], SPACEX_THEME['red'], SPACEX_THEME['blue']]
+    display_names = ['Accuracy', 'Precision', 'Recall', 'F1-Score', 'ROC-AUC']
+    colors = [MONGODB_THEME['teal_deep'], MONGODB_THEME['purple'], MONGODB_THEME['green_dark'], MONGODB_THEME['green'], MONGODB_THEME['blue']]
     
     fig = go.Figure()
-    
     for i, (m_key, d_name) in enumerate(zip(metric_keys, display_names)):
         values = [round(models_dict[m].get(m_key, 0.0) * 100, 2) for m in model_names]
         fig.add_trace(go.Bar(
@@ -298,28 +291,28 @@ def plot_model_comparison(metrics_payload: Dict[str, Any]) -> go.Figure:
             marker_color=colors[i],
             text=[f"{v:.1f}%" for v in values],
             textposition='outside',
-            textfont=dict(size=9, color=SPACEX_THEME['text'])
+            textfont=dict(size=9, color=MONGODB_THEME['text'])
         ))
         
     fig.update_layout(barmode='group')
-    fig.update_yaxes(range=[0, 115], title_text="PERCENT (%)")
-    return apply_spacex_layout(fig, "MULTI-ALGORITHM EVALUATION BENCHMARK", height=420)
+    fig.update_yaxes(range=[0, 115], title_text="Score (%)")
+    return apply_mongodb_layout(fig, "Algorithm Evaluation Benchmark", height=420)
 
-def plot_confusion_matrix(cm_data: list, model_name: str = "BEST MODEL") -> go.Figure:
+def plot_confusion_matrix(cm_data: list, model_name: str = "Best Model") -> go.Figure:
     """
-    8. Interactive Annotated Confusion Matrix Heatmap.
+    8. Interactive Annotated Confusion Matrix (MongoDB Mint Surfaces).
     """
     z_matrix = cm_data
-    labels = ['GENUINE (0)', 'FRAUD (1)']
+    labels = ['Genuine (0)', 'Fraud (1)']
     
     tn, fp = z_matrix[0][0], z_matrix[0][1]
     fn, tp = z_matrix[1][0], z_matrix[1][1]
     
     annot_text = [
-        [f"TN: {tn:,}<br><span style='font-size:10px;color:#8E8E93'>TRUE NEGATIVE</span>",
-         f"FP: {fp:,}<br><span style='font-size:10px;color:#8E8E93'>FALSE POSITIVE</span>"],
-        [f"FN: {fn:,}<br><span style='font-size:10px;color:#8E8E93'>FALSE NEGATIVE</span>",
-         f"TP: {tp:,}<br><span style='font-size:10px;color:#8E8E93'>TRUE POSITIVE</span>"]
+        [f"TN: {tn:,}<br><span style='font-size:10px;color:#5C6C75'>TRUE NEGATIVE</span>",
+         f"FP: {fp:,}<br><span style='font-size:10px;color:#FA541C'>FALSE POSITIVE</span>"],
+        [f"FN: {fn:,}<br><span style='font-size:10px;color:#FA541C'>FALSE NEGATIVE</span>",
+         f"TP: {tp:,}<br><span style='font-size:10px;color:#00684A'>TRUE POSITIVE</span>"]
     ]
     
     fig = go.Figure(data=go.Heatmap(
@@ -327,93 +320,91 @@ def plot_confusion_matrix(cm_data: list, model_name: str = "BEST MODEL") -> go.F
         x=labels,
         y=labels,
         colorscale=[
-            [0.0, '#0A0A0A'],
-            [0.5, '#1F1F1F'],
-            [1.0, '#FFFFFF']
+            [0.0, '#FFFFFF'],
+            [0.5, '#EDFCF2'],
+            [1.0, '#00ED64']
         ],
         text=annot_text,
         texttemplate="%{text}",
-        textfont=dict(family=SPACEX_THEME['font'], size=12, color='#FFFFFF'),
+        textfont=dict(family=MONGODB_THEME['font'], size=12, color='#001E2B'),
         showscale=False
     ))
     
-    fig.update_xaxes(title_text="PREDICTED CLASS", side="bottom")
-    fig.update_yaxes(title_text="ACTUAL CLASS", autorange="reversed")
-    return apply_spacex_layout(fig, f"CONFUSION MATRIX: {model_name.upper()}", height=380)
+    fig.update_xaxes(title_text="Predicted Class", side="bottom")
+    fig.update_yaxes(title_text="Actual Class", autorange="reversed")
+    return apply_mongodb_layout(fig, f"Confusion Matrix: {model_name}", height=380)
 
 def plot_roc_curves(roc_data: Dict[str, Any]) -> go.Figure:
     """
     9. Receiver Operating Characteristic (ROC) Comparison Curves.
     """
     fig = go.Figure()
-    
-    # 45-degree chance line
     fig.add_trace(go.Scatter(
         x=[0, 1], y=[0, 1],
         mode='lines',
-        name='RANDOM GUESS (AUC = 0.50)',
-        line=dict(color='#333333', dash='dash', width=1.5)
+        name='Random Baseline (AUC = 0.50)',
+        line=dict(color='#C1C7C6', dash='dash', width=1.5)
     ))
     
     colors = {
-        'Logistic Regression': '#8E8E93',
-        'Decision Tree': SPACEX_THEME['blue'],
-        'Random Forest': '#FFFFFF',
-        'Isolation Forest': SPACEX_THEME['orange']
+        'Logistic Regression': MONGODB_THEME['text_muted'],
+        'Decision Tree': MONGODB_THEME['blue'],
+        'Random Forest': MONGODB_THEME['green_dark'],
+        'Isolation Forest': MONGODB_THEME['purple']
     }
     
-    for model_name, curve in roc_data.items():
+    for m_name, curve in roc_data.items():
         fpr = curve.get('fpr', [0, 1])
         tpr = curve.get('tpr', [0, 1])
-        c = colors.get(model_name, '#FFFFFF')
+        c = colors.get(m_name, MONGODB_THEME['green_dark'])
         fig.add_trace(go.Scatter(
             x=fpr,
             y=tpr,
             mode='lines',
-            name=model_name.upper(),
-            line=dict(color=c, width=2)
+            name=m_name,
+            line=dict(color=c, width=2.5)
         ))
         
-    fig.update_xaxes(title_text="FALSE POSITIVE RATE (1 - SPECIFICITY)", range=[-0.02, 1.02])
-    fig.update_yaxes(title_text="TRUE POSITIVE RATE (RECALL)", range=[-0.02, 1.05])
-    return apply_spacex_layout(fig, "ROC CURVES (DISCRIMINATION ABILITY)", height=400)
+    fig.update_xaxes(title_text="False Positive Rate (1 - Specificity)", range=[-0.02, 1.02])
+    fig.update_yaxes(title_text="True Positive Rate (Recall)", range=[-0.02, 1.05])
+    return apply_mongodb_layout(fig, "ROC Curves (Discrimination Capacity)", height=400)
 
 def plot_fraud_risk_gauge(probability: float) -> go.Figure:
     """
-    10. Minimalist Industrial Risk Gauge.
+    10. MongoDB Threat Vector Gauge.
     """
     pct = probability * 100
     if probability < 0.30:
-        bar_color = SPACEX_THEME['green']
+        bar_color = MONGODB_THEME['green']
         level_text = "LOW RISK"
     elif probability < 0.70:
-        bar_color = SPACEX_THEME['orange']
+        bar_color = MONGODB_THEME['orange']
         level_text = "MEDIUM RISK"
     else:
-        bar_color = SPACEX_THEME['red']
-        level_text = "CRITICAL / HIGH RISK"
+        bar_color = MONGODB_THEME['red']
+        level_text = "HIGH / CRITICAL RISK"
         
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
         value=pct,
-        number={'suffix': "%", 'font': {'color': SPACEX_THEME['text'], 'family': SPACEX_THEME['font'], 'size': 32, 'weight': 700}},
-        title={'text': f"THREAT VECTOR: {level_text}", 'font': {'color': bar_color, 'family': SPACEX_THEME['font'], 'size': 12, 'weight': 700}},
+        number={'suffix': "%", 'font': {'color': MONGODB_THEME['text'], 'family': MONGODB_THEME['font'], 'size': 32, 'weight': 700}},
+        title={'text': f"THREAT VECTOR: {level_text}", 'font': {'color': bar_color, 'family': MONGODB_THEME['font'], 'size': 13, 'weight': 700}},
         gauge={
-            'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': SPACEX_THEME['border'], 'tickfont': {'color': SPACEX_THEME['text_muted'], 'size': 10}},
-            'bar': {'color': bar_color, 'thickness': 0.25},
-            'bgcolor': '#0A0A0A',
+            'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': MONGODB_THEME['border'], 'tickfont': {'color': MONGODB_THEME['text_muted'], 'size': 10}},
+            'bar': {'color': bar_color, 'thickness': 0.28},
+            'bgcolor': '#F9FBFA',
             'borderwidth': 1,
-            'bordercolor': SPACEX_THEME['border'],
+            'bordercolor': MONGODB_THEME['border'],
             'steps': [
-                {'range': [0, 30], 'color': '#051A0B'},
-                {'range': [30, 70], 'color': '#1F1405'},
-                {'range': [70, 100], 'color': '#210808'}
+                {'range': [0, 30], 'color': '#EDFCF2'},
+                {'range': [30, 70], 'color': '#FFFBE6'},
+                {'range': [70, 100], 'color': '#FFF1F0'}
             ],
             'threshold': {
-                'line': {'color': SPACEX_THEME['white'], 'width': 3},
+                'line': {'color': MONGODB_THEME['teal_deep'], 'width': 3},
                 'thickness': 0.8,
                 'value': pct
             }
         }
     ))
-    return apply_spacex_layout(fig, "COMPUTED FRAUD PROBABILITY", height=280)
+    return apply_mongodb_layout(fig, "Computed Risk Probability", height=280)
