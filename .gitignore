@@ -1,0 +1,28 @@
+﻿# Ignore large PaySim raw dumps and zip files (exceeding GitHub limits)
+archive.zip
+*.zip
+data/PS_*.csv
+PS_*.csv
+
+# Python byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Testing & Logs
+.pytest_cache/
+*.log
+
+# OS generated
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Streamlit local config
+.streamlit/secrets.toml
