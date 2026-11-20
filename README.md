@@ -4,6 +4,7 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.58%2B-white?style=flat&logo=streamlit)](https://streamlit.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-white.svg)](https://opensource.org/licenses/MIT)
 [![Design](https://img.shields.io/badge/Theme-SpaceX%20Minimalist-white?style=flat)](#)
+$deploy_badge
 
 An enterprise-grade, SpaceX-inspired financial surveillance and machine learning platform engineered to detect fraudulent transactions in high-volume digital payment networks using advanced data mining, balance discrepancy telemetry, and supervised/unsupervised machine learning ensembles.
 
@@ -163,3 +164,4 @@ This project is fully optimized for continuous deployment on [Render](https://re
 
 ## 📜 License
 MIT License. Open for educational, academic, and research applications.
+
