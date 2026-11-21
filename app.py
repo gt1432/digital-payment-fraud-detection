@@ -10,7 +10,7 @@ import numpy as np
 
 st.set_page_config(
     page_title="SENTINEL AI // Payment Fraud Radar",
-    page_icon="🛡️",
+    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -46,7 +46,7 @@ def get_summary():
 def get_models():
     models = load_trained_models()
     if not models or 'metrics' not in models:
-        with st.spinner("Initializing ML Ensemble Pipeline..."):
+        with st.spinner("Arming ML Ensemble Pipeline..."):
             train_and_evaluate_all()
             models = load_trained_models()
     return models
@@ -56,16 +56,32 @@ summary_data = get_summary()
 model_artifacts = get_models()
 metrics_payload = model_artifacts.get('metrics', {})
 
+# Live Animated Threat Ticker across the top of every page
+st.markdown("""
+<div class="sentinel-ticker">
+    <div style="display: flex; align-items: center;">
+        <span class="ticker-pulse"></span>
+        <span style="color: #00F2FE; font-weight: 700; margin-right: 12px;">SENTINEL LIVE TELEMETRY:</span>
+        <span style="color: #94A3B8;">SIMULATION STEP #744 // 6,362,620 OPS AUDITED</span>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: center;">
+        <span style="color: #FF0055; font-weight: 700;">● 8,213 ATTACKS INTERCEPTED</span>
+        <span style="color: #00FF9D; font-weight: 700;">● 99.57% RECALL</span>
+        <span class="badge-cyan" style="font-size: 0.65rem;">ACTIVE SHIELD</span>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 with st.sidebar:
     st.markdown("""
-    <div style="padding: 12px 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+    <div style="padding: 12px 0 20px 0; border-bottom: 1px solid rgba(0, 242, 254, 0.15);">
         <div style="display: flex; align-items: center; gap: 10px;">
-            <div style="width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 242, 254, 0.35);">
-                <span style="font-size: 1.1rem;">⚡</span>
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);">
+                <span style="font-size: 1.15rem;">⚡</span>
             </div>
             <div>
-                <div style="font-size: 1.15rem; font-weight: 800; color: #FFFFFF; letter-spacing: -0.02em;">SENTINEL AI</div>
-                <div style="font-size: 0.68rem; letter-spacing: 0.08em; color: #00F2FE; font-weight: 700; text-transform: uppercase;">FRAUD RADAR v3.2</div>
+                <div style="font-size: 1.2rem; font-weight: 900; color: #FFFFFF; letter-spacing: -0.02em;">SENTINEL AI</div>
+                <div style="font-size: 0.68rem; letter-spacing: 0.08em; color: #00F2FE; font-weight: 800; text-transform: uppercase;">FINTECH THREAT RADAR</div>
             </div>
         </div>
     </div>
@@ -74,27 +90,28 @@ with st.sidebar:
     st.markdown("<br>", unsafe_allow_html=True)
     
     pages = [
-        "Intelligence Overview",
-        "Empirical Analytics",
-        "Real-Time Detection",
-        "Algorithm Benchmark",
-        "Telemetry Explorer"
+        "⚡ Intelligence Overview",
+        "📊 Empirical Analytics",
+        "🎯 Real-Time Detection",
+        "🧠 Algorithm Benchmark",
+        "🔍 Telemetry Explorer"
     ]
     
-    selected_page = st.radio("RADAR PROTOCOLS", pages, index=0, label_visibility="collapsed")
+    selected_page_raw = st.radio("RADAR PROTOCOLS", pages, index=0, label_visibility="collapsed")
+    selected_page = selected_page_raw.split(" ", 1)[1]
     
     st.markdown("<br><hr style='border: none; border-top: 1px solid rgba(255, 255, 255, 0.06);'><br>", unsafe_allow_html=True)
     
     st.markdown("""
-    <div style="padding: 16px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 12px;">
+    <div style="padding: 16px; background: rgba(14, 22, 38, 0.7); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 14px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);">
         <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 0.68rem; letter-spacing: 0.06em; color: #64748B; font-weight: 700; text-transform: uppercase;">LIVE TELEMETRY</span>
-            <span class="badge-emerald" style="font-size: 0.6rem; padding: 2px 6px;">ONLINE</span>
+            <span style="font-size: 0.68rem; letter-spacing: 0.06em; color: #64748B; font-weight: 800; text-transform: uppercase;">CLUSTER HEALTH</span>
+            <span class="badge-emerald" style="font-size: 0.6rem; padding: 2px 7px;">ARMED</span>
         </div>
-        <div style="font-size: 0.95rem; color: #FFFFFF; font-weight: 700; margin-top: 6px;">PaySim Simulation Core</div>
-        <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 4px;">6,362,620 Historical Operations</div>
-        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.72rem; color: #00F2FE;">
-            ● Random Forest Ensemble Armed
+        <div style="font-size: 0.95rem; color: #FFFFFF; font-weight: 800; margin-top: 6px;">PaySim Cyber Stream</div>
+        <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 4px;">6.36M Operations Monitored</div>
+        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.72rem; color: #00F2FE; font-weight: 600;">
+            ● Random Forest Champion Active
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -105,29 +122,29 @@ if selected_page == "Intelligence Overview":
     <div class="sentinel-hero">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
             <div style="flex: 1.4; min-width: 320px;">
-                <span class="badge-cyan" style="margin-bottom: 12px;">AUTONOMOUS FINANCIAL DEFENSE</span>
-                <h1 style="margin-top: 8px;">Next-Gen Payment Fraud Intelligence</h1>
+                <span class="badge-cyan" style="margin-bottom: 12px;">SENTINEL CORE v3.2</span>
+                <h1 style="margin-top: 8px;">Autonomous Payment Threat Radar</h1>
                 <p>
                     Autonomous real-time surveillance powered by mathematical balance delta discrepancy telemetry, non-leaking SMOTE oversampling partitions, and high-precision ensemble machine learning.
                 </p>
-                <div style="display: flex; gap: 12px; margin-top: 20px; align-items: center; flex-wrap: wrap;">
-                    <span class="badge-emerald" style="font-size: 0.78rem; padding: 6px 14px;">99.57% Threat Recall</span>
-                    <span class="badge-cyan" style="font-size: 0.78rem; padding: 6px 14px;">99.82% Precision</span>
-                    <span style="color: #64748B; font-size: 0.82rem;">• 0.015% False Alarm Rate</span>
+                <div style="display: flex; gap: 12px; margin-top: 22px; align-items: center; flex-wrap: wrap;">
+                    <span class="badge-emerald" style="font-size: 0.8rem; padding: 7px 16px;">99.57% Threat Recall</span>
+                    <span class="badge-cyan" style="font-size: 0.8rem; padding: 7px 16px;">99.82% Precision</span>
+                    <span class="badge-amber" style="font-size: 0.8rem; padding: 7px 16px;">0.015% False Positive Rate</span>
                 </div>
             </div>
             <div style="flex: 1; min-width: 300px;">
-                <div style="background: rgba(11, 16, 29, 0.95); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 14px; padding: 18px; box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6);">
+                <div style="background: rgba(10, 16, 28, 0.95); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 14px; padding: 18px; box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);">
                     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin-bottom: 12px;">
-                        <span style="font-size: 0.75rem; font-weight: 700; color: #00F2FE; letter-spacing: 0.05em;">RADAR DISCREPANCY TELEMETRY</span>
-                        <span class="badge-cyan" style="font-size: 0.65rem;">ACTIVE</span>
+                        <span style="font-size: 0.75rem; font-weight: 800; color: #00F2FE; letter-spacing: 0.05em;">RADAR DISCREPANCY TELEMETRY</span>
+                        <span class="badge-cyan" style="font-size: 0.65rem;">ACTIVE CORE</span>
                     </div>
-                    <div style="font-size: 0.82rem; color: #94A3B8; font-family: 'JetBrains Mono', monospace; line-height: 1.6;">
+                    <div style="font-size: 0.82rem; color: #94A3B8; font-family: 'JetBrains Mono', monospace; line-height: 1.65;">
                         <span style="color: #64748B;">// Real-time delta formulation</span><br>
                         Δ_orig = oldbalanceOrg - (amount + newbalanceOrig)<br>
                         Δ_dest = (oldbalanceDest + amount) - newbalanceDest<br>
                         ratio_orig = amount / (oldbalanceOrg + 1.0)<br>
-                        <span style="color: #00F5A0;">>> Intercept confidence: 99.70% F1</span>
+                        <span style="color: #00FF9D; font-weight: 700;">>> Intercept Confidence: 99.70% F1-Score</span>
                     </div>
                 </div>
             </div>
@@ -153,7 +170,7 @@ if selected_page == "Intelligence Overview":
         st.markdown(f"""
         <div class="sentinel-metric">
             <div class="sentinel-metric-label">CONFIRMED ATTACKS</div>
-            <div class="sentinel-metric-value" style="color: #FF3366;">{format_count(total_fr)}</div>
+            <div class="sentinel-metric-value" style="color: #FF0055;">{format_count(total_fr)}</div>
             <div class="sentinel-metric-sub">Malicious Exfiltrations</div>
         </div>
         """, unsafe_allow_html=True)
@@ -161,7 +178,7 @@ if selected_page == "Intelligence Overview":
         st.markdown(f"""
         <div class="sentinel-metric">
             <div class="sentinel-metric-label">VERIFIED NOMINAL FLOWS</div>
-            <div class="sentinel-metric-value" style="color: #00F5A0;">{format_count(total_gn)}</div>
+            <div class="sentinel-metric-value" style="color: #00FF9D;">{format_count(total_gn)}</div>
             <div class="sentinel-metric-sub">Legitimate Capital Volume</div>
         </div>
         """, unsafe_allow_html=True)
@@ -196,11 +213,11 @@ if selected_page == "Intelligence Overview":
             <span class="badge-cyan">VECTOR FORMULATION ARCHITECTURE</span>
             <h3 style="margin-top: 10px; color: #FFFFFF;">Mathematical Anomaly Vectors</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px;">
-                <div style="background: rgba(11, 16, 29, 0.7); padding: 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.06);">
+                <div style="background: rgba(10, 16, 28, 0.7); padding: 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.06);">
                     <b style="color: #00F2FE; font-size: 0.85rem;">Sender Balance Gap:</b><br>
                     <code style="font-size: 0.78rem; color: #F1F5F9;">oldbalanceOrg - amount - newbalanceOrig</code>
                 </div>
-                <div style="background: rgba(11, 16, 29, 0.7); padding: 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.06);">
+                <div style="background: rgba(10, 16, 28, 0.7); padding: 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.06);">
                     <b style="color: #00F2FE; font-size: 0.85rem;">Recipient Delta Gap:</b><br>
                     <code style="font-size: 0.78rem; color: #F1F5F9;">oldbalanceDest + amount - newbalanceDest</code>
                 </div>
@@ -225,7 +242,7 @@ if selected_page == "Intelligence Overview":
             </p>
             <div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.88rem;">
                 <span style="color: #64748B;">Test Recall (Catch Rate):</span>
-                <b style="color: #00F5A0; font-family: 'JetBrains Mono', monospace;">{best_m.get('recall', 0.9957) * 100:.2f}%</b>
+                <b style="color: #00FF9D; font-family: 'JetBrains Mono', monospace;">{best_m.get('recall', 0.9957) * 100:.2f}%</b>
             </div>
             <div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.88rem;">
                 <span style="color: #64748B;">Test Precision:</span>
@@ -248,7 +265,7 @@ elif selected_page == "Empirical Analytics":
     with col_a:
         st.plotly_chart(plot_fraud_by_type(summary_data, df_data), use_container_width=True)
         st.markdown("""
-        <div style="font-size: 0.82rem; color: #94A3B8; padding: 12px 16px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; margin-bottom: 20px;">
+        <div style="font-size: 0.82rem; color: #94A3B8; padding: 12px 16px; background: rgba(14, 22, 38, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; margin-bottom: 20px;">
             <b style="color: #00F2FE;">Empirical Pattern:</b> 100% of historical fraud occurs exclusively in <b>CASH_OUT</b> (4,116 cases) and <b>TRANSFER</b> (4,097 cases). Zero fraud exists in PAYMENT, CASH_IN, or DEBIT.
         </div>
         """, unsafe_allow_html=True)
@@ -256,8 +273,8 @@ elif selected_page == "Empirical Analytics":
     with col_b:
         st.plotly_chart(plot_amount_distribution(df_data), use_container_width=True)
         st.markdown("""
-        <div style="font-size: 0.82rem; color: #94A3B8; padding: 12px 16px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; margin-bottom: 20px;">
-            <b style="color: #FF3366;">Volume Disparity:</b> Fraudulent attacks exhibit significantly higher median values ($1.4M+) compared to genuine retail transactions (median $74K).
+        <div style="font-size: 0.82rem; color: #94A3B8; padding: 12px 16px; background: rgba(14, 22, 38, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; margin-bottom: 20px;">
+            <b style="color: #FF0055;">Volume Disparity:</b> Fraudulent attacks exhibit significantly higher median values ($1.4M+) compared to genuine retail transactions (median $74K).
         </div>
         """, unsafe_allow_html=True)
         
@@ -265,7 +282,7 @@ elif selected_page == "Empirical Analytics":
     with col_c:
         st.plotly_chart(plot_fraud_trends_by_step(summary_data, df_data), use_container_width=True)
         st.markdown("""
-        <div style="font-size: 0.82rem; color: #94A3B8; padding: 12px 16px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; margin-bottom: 20px;">
+        <div style="font-size: 0.82rem; color: #94A3B8; padding: 12px 16px; background: rgba(14, 22, 38, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; margin-bottom: 20px;">
             <b style="color: #F59E0B;">Diurnal Persistence:</b> Attackers operate continuously across all 24 hours, whereas genuine consumer transfers drop sharply during off-peak night cycles.
         </div>
         """, unsafe_allow_html=True)
@@ -273,8 +290,8 @@ elif selected_page == "Empirical Analytics":
     with col_d:
         st.plotly_chart(plot_balance_analysis(df_data), use_container_width=True)
         st.markdown("""
-        <div style="font-size: 0.82rem; color: #94A3B8; padding: 12px 16px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; margin-bottom: 20px;">
-            <b style="color: #00F5A0;">Ledger Mutation:</b> Malicious transactions cluster along complete origin liquidation lines with anomalous recipient balances.
+        <div style="font-size: 0.82rem; color: #94A3B8; padding: 12px 16px; background: rgba(14, 22, 38, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; margin-bottom: 20px;">
+            <b style="color: #00FF9D;">Ledger Mutation:</b> Malicious transactions cluster along complete origin liquidation lines with anomalous recipient balances.
         </div>
         """, unsafe_allow_html=True)
         
@@ -288,7 +305,7 @@ elif selected_page == "Real-Time Detection":
     st.markdown("<hr style='border: none; border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 1.5rem 0;'>", unsafe_allow_html=True)
     
     st.markdown("""
-    <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(0, 242, 254, 0.3); padding: 14px 20px; border-radius: 12px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+    <div style="background: rgba(14, 22, 38, 0.7); border: 1px solid rgba(0, 242, 254, 0.3); padding: 14px 20px; border-radius: 12px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
         <div style="display: flex; align-items: center; gap: 10px;">
             <span style="font-size: 1.2rem;">🛡️</span>
             <span style="font-size: 0.85rem; color: #F1F5F9; font-weight: 500;">
@@ -306,8 +323,8 @@ elif selected_page == "Real-Time Detection":
     for i, (s_name, s_vals) in enumerate(scenarios.items()):
         with s_cols[i]:
             st.markdown(f"""
-            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 12px; padding: 14px; margin-bottom: 8px;">
-                <span style="background: {s_vals['badge_color']}; color: #080C14; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 6px;">{s_vals['badge']}</span>
+            <div style="background: rgba(14, 22, 38, 0.6); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 12px; padding: 14px; margin-bottom: 8px;">
+                <span style="background: {s_vals['badge_color']}; color: #050811; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 6px;">{s_vals['badge']}</span>
                 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin-top: 8px;">{s_name.split('[')[0].strip()}</div>
             </div>
             """, unsafe_allow_html=True)
@@ -386,7 +403,7 @@ elif selected_page == "Real-Time Detection":
             is_high = res['risk_level'] == 'HIGH'
             is_med = res['risk_level'] == 'MEDIUM'
             badge_class = "badge-crimson" if is_high else ("badge-amber" if is_med else "badge-emerald")
-            border_color = "#FF3366" if is_high else ("#F59E0B" if is_med else "#00F5A0")
+            border_color = "#FF0055" if is_high else ("#F59E0B" if is_med else "#00FF9D")
             
             st.markdown(f"""
             <div class="sentinel-card" style="border-left: 4px solid {border_color} !important;">
@@ -413,7 +430,7 @@ elif selected_page == "Real-Time Detection":
             """, unsafe_allow_html=True)
             
             for ind in res['indicators']:
-                ind_color = "#FF3366" if ind['severity'] in ['HIGH', 'CRITICAL'] else ("#F59E0B" if ind['severity'] == 'MEDIUM' else "#00F5A0")
+                ind_color = "#FF0055" if ind['severity'] in ['HIGH', 'CRITICAL'] else ("#F59E0B" if ind['severity'] == 'MEDIUM' else "#00FF9D")
                 st.markdown(f"""
                 <div style="padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
                     <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -431,13 +448,13 @@ elif selected_page == "Real-Time Detection":
             <div style="display: flex; gap: 12px; margin-top: 10px;">
                 <div class="sentinel-metric" style="flex: 1;">
                     <div class="sentinel-metric-label">Sender Balance Delta Gap</div>
-                    <div style="font-size: 1.1rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: {'#FF3366' if abs(fc['errorBalanceOrig']) > 1 else '#00F5A0'};">
+                    <div style="font-size: 1.1rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: {'#FF0055' if abs(fc['errorBalanceOrig']) > 1 else '#00FF9D'};">
                         ${fc['errorBalanceOrig']:,.2f}
                     </div>
                 </div>
                 <div class="sentinel-metric" style="flex: 1;">
                     <div class="sentinel-metric-label">Recipient Delta Gap</div>
-                    <div style="font-size: 1.1rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: {'#FF3366' if abs(fc['errorBalanceDest']) > 1 else '#00F5A0'};">
+                    <div style="font-size: 1.1rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: {'#FF0055' if abs(fc['errorBalanceDest']) > 1 else '#00FF9D'};">
                         ${fc['errorBalanceDest']:,.2f}
                     </div>
                 </div>
@@ -544,7 +561,7 @@ elif selected_page == "Telemetry Explorer":
         st.markdown(f"""
         <div class="sentinel-metric">
             <div class="sentinel-metric-label">MISSING VALUES</div>
-            <div class="sentinel-metric-value" style="color: #00F5A0;">{val_report['total_nulls']}</div>
+            <div class="sentinel-metric-value" style="color: #00FF9D;">{val_report['total_nulls']}</div>
             <div class="sentinel-metric-sub">100% Data Integrity</div>
         </div>
         """, unsafe_allow_html=True)

@@ -1,6 +1,6 @@
 ﻿"""
 Digital Payment Fraud Detection - Utilities & Styling Module
-SENTINEL AI: Bespoke FinTech & Threat Radar Design System
+SENTINEL AI: High-End Obsidian Cyber FinTech UI/UX
 Author: Senior ML Engineer & UI/UX Designer
 """
 import streamlit as st
@@ -20,7 +20,7 @@ def get_demo_scenarios() -> Dict[str, Dict[str, Any]]:
     and normal legitimate financial transactions.
     """
     return {
-        "Draining Transfer Attack [FRAUD]": {
+        "Draining Attack [FRAUD]": {
             "type": "TRANSFER",
             "amount": 250000.0,
             "oldbalanceOrg": 250000.0,
@@ -28,11 +28,11 @@ def get_demo_scenarios() -> Dict[str, Dict[str, Any]]:
             "oldbalanceDest": 0.0,
             "newbalanceDest": 0.0,
             "step": 142,
-            "badge": "CRITICAL THREAT",
-            "badge_color": "#FF3366",
+            "badge": "CRITICAL ATTACK",
+            "badge_color": "#FF0055",
             "description": "Attacker drains 100% of origin account to 0.00; destination mule wallet has 0 prior transaction history."
         },
-        "High-Value Cash Out [FRAUD]": {
+        "Cash Out Exfiltration [FRAUD]": {
             "type": "CASH_OUT",
             "amount": 420000.0,
             "oldbalanceOrg": 420000.0,
@@ -41,10 +41,10 @@ def get_demo_scenarios() -> Dict[str, Dict[str, Any]]:
             "newbalanceDest": 12500.0,
             "step": 365,
             "badge": "EXFILTRATION",
-            "badge_color": "#FF3366",
+            "badge_color": "#FF0055",
             "description": "Immediate liquidation via Cash Out with destination balance ledger reconciliation mismatch."
         },
-        "Retail Merchant POS [GENUINE]": {
+        "Retail POS Merchant [GENUINE]": {
             "type": "PAYMENT",
             "amount": 84.50,
             "oldbalanceOrg": 1540.0,
@@ -53,10 +53,10 @@ def get_demo_scenarios() -> Dict[str, Dict[str, Any]]:
             "newbalanceDest": 0.0,
             "step": 24,
             "badge": "NOMINAL FLOW",
-            "badge_color": "#00F5A0",
+            "badge_color": "#00FF9D",
             "description": "Standard POS merchant payment with exact mathematical balance deduction."
         },
-        "Corporate Cash In Deposit [GENUINE]": {
+        "Corporate Liquidity Deposit [GENUINE]": {
             "type": "CASH_IN",
             "amount": 65000.0,
             "oldbalanceOrg": 12000.0,
@@ -72,37 +72,36 @@ def get_demo_scenarios() -> Dict[str, Dict[str, Any]]:
 
 def inject_sentinel_css():
     """
-    Injects custom CSS enforcing our signature Sentinel AI FinTech design system:
-    - Deep Obsidian Canvas (#080C14 / #0D1322)
-    - Cyber Cyan & Neon Cobalt accents (#00F2FE / #4FACFE)
-    - Frosted glassmorphic cards with subtle ambient glow
-    - Plus Jakarta Sans / Inter geometric typography
-    - JetBrains Mono financial numbers
-    - Glowing state badges and tactile gradient action buttons
+    Injects custom high-specificity CSS enforcing the Sentinel AI FinTech design system:
+    - Deep Obsidian Canvas (#050811 / #0B1120) with ambient cyan / violet radial glow
+    - Glowing glassmorphic cards with subtle animated pulse
+    - Plus Jakarta Sans geometric typography with JetBrains Mono numbers
+    - Vibrant cyber accents: Electric Cyan (#00F2FE), Neon Emerald (#00FF9D), Radiant Crimson (#FF0055)
+    - High-specificity selectors to override Streamlit internal styles
     """
     css = """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
     /* Global Obsidian Canvas */
-    html, body, [data-testid="stAppViewContainer"], .main {
-        background: #080C14 !important;
+    html, body, [data-testid="stAppViewContainer"], .main, .stApp {
+        background: #050811 !important;
         background-image: 
-            radial-gradient(at 10% 10%, rgba(0, 242, 254, 0.04) 0px, transparent 50%),
-            radial-gradient(at 90% 90%, rgba(99, 102, 241, 0.04) 0px, transparent 50%) !important;
-        color: #F1F5F9 !important;
+            radial-gradient(at 0% 0%, rgba(0, 242, 254, 0.07) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, rgba(121, 40, 202, 0.07) 0px, transparent 50%) !important;
+        color: #F8FAFC !important;
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
     [data-testid="stHeader"] {
-        background-color: rgba(8, 12, 20, 0.85) !important;
+        background-color: rgba(5, 8, 17, 0.85) !important;
         backdrop-filter: blur(16px) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+        border-bottom: 1px solid rgba(0, 242, 254, 0.12) !important;
     }
 
     [data-testid="stSidebar"] {
-        background-color: #0B101D !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+        background-color: #080D1A !important;
+        border-right: 1px solid rgba(0, 242, 254, 0.1) !important;
     }
 
     [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] div, [data-testid="stSidebar"] label {
@@ -113,26 +112,28 @@ def inject_sentinel_css():
     h1, h2, h3, h4, h5, h6 {
         color: #FFFFFF !important;
         font-family: 'Plus Jakarta Sans', sans-serif !important;
-        font-weight: 700 !important;
+        font-weight: 800 !important;
         letter-spacing: -0.03em !important;
     }
 
     h1 {
-        font-size: 2.25rem !important;
+        font-size: 2.3rem !important;
         line-height: 1.2 !important;
-        background: linear-gradient(135deg, #FFFFFF 30%, #94A3B8 100%);
+        background: linear-gradient(135deg, #FFFFFF 20%, #00F2FE 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 0.5rem !important;
     }
 
     h2 {
-        font-size: 1.45rem !important;
+        font-size: 1.5rem !important;
+        color: #F1F5F9 !important;
         margin-top: 1.25rem !important;
     }
 
     h3 {
         font-size: 1.15rem !important;
+        color: #F1F5F9 !important;
     }
 
     p, span, label {
@@ -144,65 +145,98 @@ def inject_sentinel_css():
         font-family: 'JetBrains Mono', monospace !important;
     }
 
-    /* Sentinel Hero Banner */
+    /* Animated Live Telemetry Ticker */
+    .sentinel-ticker {
+        background: rgba(11, 17, 32, 0.85);
+        border: 1px solid rgba(0, 242, 254, 0.2);
+        border-radius: 12px;
+        padding: 8px 16px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.78rem;
+        box-shadow: 0 4px 20px rgba(0, 242, 254, 0.08);
+    }
+
+    .ticker-pulse {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #00FF9D;
+        box-shadow: 0 0 10px #00FF9D;
+        margin-right: 8px;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(1.2); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Hero Banner */
     .sentinel-hero {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(13, 19, 34, 0.95) 100%);
-        border: 1px solid rgba(0, 242, 254, 0.18);
+        background: linear-gradient(135deg, rgba(14, 23, 42, 0.85) 0%, rgba(10, 16, 30, 0.95) 100%);
+        border: 1px solid rgba(0, 242, 254, 0.25);
         border-radius: 20px;
         padding: 2.5rem;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 35px -10px rgba(0, 242, 254, 0.12);
+        box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7), 0 0 35px -10px rgba(0, 242, 254, 0.15);
         margin-bottom: 2rem;
     }
 
     .sentinel-hero::before {
         content: '';
         position: absolute;
-        top: -50%;
-        right: -20%;
-        width: 350px;
-        height: 350px;
-        background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, transparent 70%);
+        top: -60%;
+        right: -25%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(0, 242, 254, 0.18) 0%, transparent 70%);
         pointer-events: none;
     }
 
-    /* Frosted Glassmorphic Cards */
+    /* Glassmorphic Obsidian Cards */
     .sentinel-card {
-        background: rgba(15, 23, 42, 0.65);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(14, 22, 38, 0.65);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.09);
         border-radius: 16px;
         padding: 1.5rem;
         margin-bottom: 1.25rem;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
-        transition: transform 0.2s ease, border-color 0.2s ease;
+        box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .sentinel-card:hover {
-        border-color: rgba(0, 242, 254, 0.25);
+        border-color: rgba(0, 242, 254, 0.35);
+        box-shadow: 0 14px 35px -5px rgba(0, 242, 254, 0.12);
         transform: translateY(-2px);
     }
 
     /* Featured Threat / Champion Tier Card */
     .sentinel-card-featured {
-        background: linear-gradient(135deg, rgba(16, 28, 48, 0.8) 0%, rgba(13, 22, 40, 0.8) 100%);
-        border: 1px solid rgba(0, 242, 254, 0.4);
+        background: linear-gradient(135deg, rgba(15, 27, 46, 0.85) 0%, rgba(11, 19, 36, 0.9) 100%);
+        border: 1px solid rgba(0, 242, 254, 0.45);
         border-radius: 16px;
         padding: 1.75rem;
         margin-bottom: 1.25rem;
-        box-shadow: 0 12px 32px -5px rgba(0, 242, 254, 0.15);
+        box-shadow: 0 12px 35px -5px rgba(0, 242, 254, 0.2);
         position: relative;
     }
 
-    /* Metrics Cards */
+    /* Metric Containers */
     .sentinel-metric {
-        background: rgba(15, 23, 42, 0.6);
+        background: rgba(14, 22, 38, 0.6);
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 14px;
         padding: 1.25rem 1.4rem;
-        box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.35);
     }
 
     .sentinel-metric-label {
@@ -210,14 +244,14 @@ def inject_sentinel_css():
         text-transform: uppercase;
         letter-spacing: 0.08em;
         color: #64748B;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 0.35rem;
     }
 
     .sentinel-metric-value {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 1.85rem;
-        font-weight: 700;
+        font-size: 1.95rem;
+        font-weight: 800;
         color: #FFFFFF;
         letter-spacing: -0.03em;
     }
@@ -228,34 +262,35 @@ def inject_sentinel_css():
         margin-top: 0.3rem;
     }
 
-    /* Tactile Cyber Action Buttons */
-    .stButton > button {
+    /* Glowing Cyber Action Buttons */
+    .stButton > button, div.stButton > button:first-child {
         background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%) !important;
-        color: #060B16 !important;
+        color: #050811 !important;
         border: none !important;
         border-radius: 12px !important;
-        padding: 10px 22px !important;
+        padding: 10px 24px !important;
         font-size: 0.88rem !important;
-        font-weight: 700 !important;
-        letter-spacing: -0.01em !important;
-        box-shadow: 0 4px 18px rgba(0, 242, 254, 0.28) !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.01em !important;
+        box-shadow: 0 4px 20px rgba(0, 242, 254, 0.32) !important;
         transition: all 0.2s ease-in-out !important;
     }
 
-    .stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 242, 254, 0.42) !important;
+    .stButton > button:hover, div.stButton > button:first-child:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 28px rgba(0, 242, 254, 0.48) !important;
+        filter: brightness(1.08) !important;
     }
 
-    .stButton > button:active {
-        transform: translateY(0);
+    .stButton > button:active, div.stButton > button:first-child:active {
+        transform: translateY(0) !important;
     }
 
     /* Secondary Outlined Buttons */
     .stButton > button[kind="secondary"] {
-        background: rgba(15, 23, 42, 0.6) !important;
-        color: #F1F5F9 !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        background: rgba(14, 22, 38, 0.65) !important;
+        color: #F8FAFC !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
         box-shadow: none !important;
     }
 
@@ -266,15 +301,15 @@ def inject_sentinel_css():
 
     /* Form Inputs */
     input, select, textarea, [data-baseweb="input"], [data-baseweb="select"] {
-        background-color: #0E1626 !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        background-color: #0A101D !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
         color: #FFFFFF !important;
         border-radius: 10px !important;
     }
 
     input:focus, select:focus, textarea:focus {
         border-color: #00F2FE !important;
-        box-shadow: 0 0 0 2px rgba(0, 242, 254, 0.2) !important;
+        box-shadow: 0 0 0 2px rgba(0, 242, 254, 0.25) !important;
     }
 
     /* Badges & Cyber Tags */
@@ -283,7 +318,7 @@ def inject_sentinel_css():
         padding: 3px 10px;
         background: rgba(0, 242, 254, 0.12);
         color: #00F2FE !important;
-        border: 1px solid rgba(0, 242, 254, 0.35);
+        border: 1px solid rgba(0, 242, 254, 0.4);
         font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 0.05em;
@@ -294,9 +329,9 @@ def inject_sentinel_css():
     .badge-crimson {
         display: inline-block;
         padding: 3px 10px;
-        background: rgba(239, 68, 68, 0.12);
-        color: #FF3366 !important;
-        border: 1px solid rgba(239, 68, 68, 0.35);
+        background: rgba(255, 0, 85, 0.12);
+        color: #FF0055 !important;
+        border: 1px solid rgba(255, 0, 85, 0.4);
         font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 0.05em;
@@ -307,9 +342,9 @@ def inject_sentinel_css():
     .badge-emerald {
         display: inline-block;
         padding: 3px 10px;
-        background: rgba(16, 185, 129, 0.12);
-        color: #00F5A0 !important;
-        border: 1px solid rgba(16, 185, 129, 0.35);
+        background: rgba(0, 255, 157, 0.12);
+        color: #00FF9D !important;
+        border: 1px solid rgba(0, 255, 157, 0.4);
         font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 0.05em;
@@ -322,7 +357,7 @@ def inject_sentinel_css():
         padding: 3px 10px;
         background: rgba(245, 158, 11, 0.12);
         color: #F59E0B !important;
-        border: 1px solid rgba(245, 158, 11, 0.35);
+        border: 1px solid rgba(245, 158, 11, 0.4);
         font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 0.05em;
@@ -334,7 +369,7 @@ def inject_sentinel_css():
     [data-testid="stDataFrame"], table {
         border: 1px solid rgba(255, 255, 255, 0.08) !important;
         border-radius: 12px !important;
-        background: rgba(15, 23, 42, 0.7) !important;
+        background: rgba(14, 22, 38, 0.7) !important;
     }
 
     /* Tabs */
@@ -345,7 +380,7 @@ def inject_sentinel_css():
 
     .stTabs [data-baseweb="tab"] {
         color: #64748B !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         padding: 0.75rem 0.2rem !important;
     }
 
