@@ -1,6 +1,6 @@
 ﻿"""
 Digital Payment Fraud Detection - Utilities & Styling Module
-MongoDB Dual-Mode Design System
+SENTINEL AI: Bespoke FinTech & Threat Radar Design System
 Author: Senior ML Engineer & UI/UX Designer
 """
 import streamlit as st
@@ -28,8 +28,8 @@ def get_demo_scenarios() -> Dict[str, Dict[str, Any]]:
             "oldbalanceDest": 0.0,
             "newbalanceDest": 0.0,
             "step": 142,
-            "tag": "Database & Security",
-            "tag_color": "#6C47FF",
+            "badge": "CRITICAL THREAT",
+            "badge_color": "#FF3366",
             "description": "Attacker drains 100% of origin account to 0.00; destination mule wallet has 0 prior transaction history."
         },
         "High-Value Cash Out [FRAUD]": {
@@ -40,11 +40,11 @@ def get_demo_scenarios() -> Dict[str, Dict[str, Any]]:
             "oldbalanceDest": 12500.0,
             "newbalanceDest": 12500.0,
             "step": 365,
-            "tag": "Search & Retrieval",
-            "tag_color": "#FA541C",
-            "description": "Immediate liquidation via Cash Out with destination balance ledger reconciliation failure."
+            "badge": "EXFILTRATION",
+            "badge_color": "#FF3366",
+            "description": "Immediate liquidation via Cash Out with destination balance ledger reconciliation mismatch."
         },
-        "Retail Merchant Payment [GENUINE]": {
+        "Retail Merchant POS [GENUINE]": {
             "type": "PAYMENT",
             "amount": 84.50,
             "oldbalanceOrg": 1540.0,
@@ -52,9 +52,9 @@ def get_demo_scenarios() -> Dict[str, Dict[str, Any]]:
             "oldbalanceDest": 0.0,
             "newbalanceDest": 0.0,
             "step": 24,
-            "tag": "Atlas Cloud",
-            "tag_color": "#0068FF",
-            "description": "Standard POS merchant payment with exact mathematical balance reduction."
+            "badge": "NOMINAL FLOW",
+            "badge_color": "#00F5A0",
+            "description": "Standard POS merchant payment with exact mathematical balance deduction."
         },
         "Corporate Cash In Deposit [GENUINE]": {
             "type": "CASH_IN",
@@ -64,337 +64,294 @@ def get_demo_scenarios() -> Dict[str, Dict[str, Any]]:
             "oldbalanceDest": 95000.0,
             "newbalanceDest": 30000.0,
             "step": 48,
-            "tag": "Data Platform",
-            "tag_color": "#00684A",
+            "badge": "VERIFIED DEPOSIT",
+            "badge_color": "#00F2FE",
             "description": "Verified high-liquidity capital deposit with clean ledger reconciliation."
         }
     }
 
-def inject_mongodb_css():
+def inject_sentinel_css():
     """
-    Injects custom CSS enforcing MongoDB visual identity:
-    - Deep navy/teal hero bands (#001E2B)
-    - Bright MongoDB green (#00ED64) CTA pills universally
-    - Stark white documentation and pricing surfaces (#FFFFFF)
-    - 12px rounded cards with 1px hairline borders
-    - Colored category tags (purple, orange, green, teal)
-    - Featured pricing/threat tier with pale mint (#EDFCF2) and green border
-    - Code mockup cards with terminal-aesthetic dark canvas
+    Injects custom CSS enforcing our signature Sentinel AI FinTech design system:
+    - Deep Obsidian Canvas (#080C14 / #0D1322)
+    - Cyber Cyan & Neon Cobalt accents (#00F2FE / #4FACFE)
+    - Frosted glassmorphic cards with subtle ambient glow
+    - Plus Jakarta Sans / Inter geometric typography
+    - JetBrains Mono financial numbers
+    - Glowing state badges and tactile gradient action buttons
     """
     css = """
     <style>
-    /* Google Fonts: Inter / Euclid Geometric fallback & Source Code Pro */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Code+Pro:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-    /* Root Canvas & Text Defaults */
+    /* Global Obsidian Canvas */
     html, body, [data-testid="stAppViewContainer"], .main {
-        background-color: #F9FBFA !important;
-        color: #001E2B !important;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        background: #080C14 !important;
+        background-image: 
+            radial-gradient(at 10% 10%, rgba(0, 242, 254, 0.04) 0px, transparent 50%),
+            radial-gradient(at 90% 90%, rgba(99, 102, 241, 0.04) 0px, transparent 50%) !important;
+        color: #F1F5F9 !important;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
     [data-testid="stHeader"] {
-        background-color: rgba(255, 255, 255, 0.92) !important;
-        backdrop-filter: blur(12px) !important;
-        border-bottom: 1px solid #E8EDEB !important;
+        background-color: rgba(8, 12, 20, 0.85) !important;
+        backdrop-filter: blur(16px) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
     }
 
     [data-testid="stSidebar"] {
-        background-color: #001E2B !important;
-        border-right: 1px solid #0A3B36 !important;
+        background-color: #0B101D !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
     }
 
     [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] div, [data-testid="stSidebar"] label {
-        color: #FFFFFF !important;
+        color: #94A3B8 !important;
     }
 
-    /* Headings - Euclid Circular A Style */
+    /* Headings */
     h1, h2, h3, h4, h5, h6 {
-        color: #001E2B !important;
-        font-family: 'Inter', sans-serif !important;
-        font-weight: 600 !important;
-        letter-spacing: -0.5px !important;
+        color: #FFFFFF !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.03em !important;
     }
 
     h1 {
-        font-size: 2.2rem !important;
-        line-height: 1.15 !important;
-        letter-spacing: -1px !important;
+        font-size: 2.25rem !important;
+        line-height: 1.2 !important;
+        background: linear-gradient(135deg, #FFFFFF 30%, #94A3B8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         margin-bottom: 0.5rem !important;
     }
 
     h2 {
-        font-size: 1.5rem !important;
-        letter-spacing: -0.5px !important;
-        margin-top: 1.5rem !important;
+        font-size: 1.45rem !important;
+        margin-top: 1.25rem !important;
     }
 
     h3 {
         font-size: 1.15rem !important;
-        letter-spacing: 0px !important;
     }
 
     p, span, label {
-        color: #3D4F58;
+        color: #94A3B8;
+        font-size: 0.92rem;
     }
 
-    /* MongoDB Deep Navy Hero Band */
-    .mongodb-hero {
-        background: linear-gradient(135deg, #001E2B 0%, #023430 100%);
-        border-radius: 16px;
-        padding: 3rem 2.5rem;
-        color: #FFFFFF !important;
-        margin-bottom: 2rem;
-        box-shadow: 0 12px 24px -4px rgba(0, 30, 43, 0.12);
+    code, .mono {
+        font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    /* Sentinel Hero Banner */
+    .sentinel-hero {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(13, 19, 34, 0.95) 100%);
+        border: 1px solid rgba(0, 242, 254, 0.18);
+        border-radius: 20px;
+        padding: 2.5rem;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 35px -10px rgba(0, 242, 254, 0.12);
+        margin-bottom: 2rem;
     }
 
-    .mongodb-hero h1 {
-        color: #FFFFFF !important;
-        font-size: 2.5rem !important;
-        letter-spacing: -1.2px !important;
-        font-weight: 700 !important;
+    .sentinel-hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, transparent 70%);
+        pointer-events: none;
     }
 
-    .mongodb-hero p {
-        color: #C1C7C6 !important;
-        font-size: 1.05rem !important;
-        line-height: 1.55 !important;
-        max-width: 780px;
-    }
-
-    /* MongoDB Code Mockup Card (Terminal Aesthetic) */
-    .mongodb-code-mockup {
-        background-color: #00141E;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 12px;
-        padding: 1.25rem;
-        font-family: 'Source Code Pro', monospace !important;
-        color: #E8EDEB;
-        font-size: 0.85rem;
-        box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.4);
-    }
-
-    .mongodb-code-header {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 12px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding-bottom: 8px;
-    }
-
-    .dot-red { width: 10px; height: 10px; border-radius: 50%; background-color: #FF5F56; }
-    .dot-yellow { width: 10px; height: 10px; border-radius: 50%; background-color: #FFBD2E; }
-    .dot-green { width: 10px; height: 10px; border-radius: 50%; background-color: #27C93F; }
-
-    /* Standard Cards (12px rounded, 1px hairline border) */
-    .mongodb-card {
-        background-color: #FFFFFF;
-        border: 1px solid #E8EDEB;
-        border-radius: 12px;
+    /* Frosted Glassmorphic Cards */
+    .sentinel-card {
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
         padding: 1.5rem;
-        box-shadow: 0 4px 12px 0 rgba(0, 30, 43, 0.04);
         margin-bottom: 1.25rem;
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+        transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .mongodb-card:hover {
-        box-shadow: 0 6px 16px 0 rgba(0, 30, 43, 0.08);
+    .sentinel-card:hover {
+        border-color: rgba(0, 242, 254, 0.25);
+        transform: translateY(-2px);
     }
 
-    /* Featured Tier Card (Mint Background + Bright Green Border) */
-    .mongodb-card-featured {
-        background-color: #EDFCF2 !important;
-        border: 2px solid #00ED64 !important;
-        border-radius: 12px;
+    /* Featured Threat / Champion Tier Card */
+    .sentinel-card-featured {
+        background: linear-gradient(135deg, rgba(16, 28, 48, 0.8) 0%, rgba(13, 22, 40, 0.8) 100%);
+        border: 1px solid rgba(0, 242, 254, 0.4);
+        border-radius: 16px;
         padding: 1.75rem;
-        box-shadow: 0 8px 24px 0 rgba(0, 237, 100, 0.15);
         margin-bottom: 1.25rem;
+        box-shadow: 0 12px 32px -5px rgba(0, 242, 254, 0.15);
+        position: relative;
     }
 
-    /* Metric Cards */
-    .mongodb-metric {
-        background-color: #FFFFFF;
-        border: 1px solid #E8EDEB;
-        border-radius: 12px;
-        padding: 1.25rem 1.5rem;
-        box-shadow: 0 2px 6px rgba(0, 30, 43, 0.03);
+    /* Metrics Cards */
+    .sentinel-metric {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 14px;
+        padding: 1.25rem 1.4rem;
+        box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.3);
     }
 
-    .mongodb-metric-label {
+    .sentinel-metric-label {
         font-size: 0.72rem;
         text-transform: uppercase;
-        letter-spacing: 0.8px;
-        color: #5C6C75;
+        letter-spacing: 0.08em;
+        color: #64748B;
         font-weight: 600;
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.35rem;
     }
 
-    .mongodb-metric-value {
+    .sentinel-metric-value {
+        font-family: 'JetBrains Mono', monospace;
         font-size: 1.85rem;
         font-weight: 700;
-        color: #001E2B;
-        letter-spacing: -0.5px;
+        color: #FFFFFF;
+        letter-spacing: -0.03em;
     }
 
-    .mongodb-metric-sub {
+    .sentinel-metric-sub {
         font-size: 0.78rem;
-        color: #889397;
-        margin-top: 0.25rem;
+        color: #64748B;
+        margin-top: 0.3rem;
     }
 
-    /* Universal MongoDB Green Pill Buttons */
+    /* Tactile Cyber Action Buttons */
     .stButton > button {
-        background-color: #00ED64 !important;
-        color: #001E2B !important;
+        background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%) !important;
+        color: #060B16 !important;
         border: none !important;
-        border-radius: 9999px !important;
-        padding: 10px 24px !important;
+        border-radius: 12px !important;
+        padding: 10px 22px !important;
         font-size: 0.88rem !important;
-        font-weight: 600 !important;
-        letter-spacing: 0 !important;
-        box-shadow: 0 2px 4px rgba(0, 30, 43, 0.08) !important;
-        transition: all 0.15s ease-in-out !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.01em !important;
+        box-shadow: 0 4px 18px rgba(0, 242, 254, 0.28) !important;
+        transition: all 0.2s ease-in-out !important;
     }
 
     .stButton > button:hover {
-        background-color: #00C853 !important;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 10px rgba(0, 237, 100, 0.25) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 242, 254, 0.42) !important;
     }
 
     .stButton > button:active {
-        background-color: #009639 !important;
         transform: translateY(0);
     }
 
-    /* Secondary Outlined Pill Buttons */
+    /* Secondary Outlined Buttons */
     .stButton > button[kind="secondary"] {
-        background-color: transparent !important;
-        color: #001E2B !important;
-        border: 1px solid #C1C7C6 !important;
+        background: rgba(15, 23, 42, 0.6) !important;
+        color: #F1F5F9 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: none !important;
     }
 
     .stButton > button[kind="secondary"]:hover {
-        background-color: #F9FBFA !important;
-        border-color: #001E2B !important;
+        border-color: #00F2FE !important;
+        color: #00F2FE !important;
     }
 
-    /* Input Fields (8px rounded, height 44px) */
+    /* Form Inputs */
     input, select, textarea, [data-baseweb="input"], [data-baseweb="select"] {
-        background-color: #FFFFFF !important;
-        border: 1px solid #C1C7C6 !important;
-        color: #001E2B !important;
-        border-radius: 8px !important;
+        background-color: #0E1626 !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #FFFFFF !important;
+        border-radius: 10px !important;
     }
 
     input:focus, select:focus, textarea:focus {
-        border: 2px solid #00684A !important;
-        outline: none !important;
+        border-color: #00F2FE !important;
+        box-shadow: 0 0 0 2px rgba(0, 242, 254, 0.2) !important;
     }
 
-    /* Category Badges & Tags */
-    .tag-purple {
+    /* Badges & Cyber Tags */
+    .badge-cyan {
         display: inline-block;
-        padding: 3px 8px;
-        background-color: #6C47FF;
-        color: #FFFFFF !important;
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        border-radius: 4px;
+        padding: 3px 10px;
+        background: rgba(0, 242, 254, 0.12);
+        color: #00F2FE !important;
+        border: 1px solid rgba(0, 242, 254, 0.35);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        border-radius: 8px;
         text-transform: uppercase;
     }
 
-    .tag-orange {
+    .badge-crimson {
         display: inline-block;
-        padding: 3px 8px;
-        background-color: #FA541C;
-        color: #FFFFFF !important;
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        border-radius: 4px;
+        padding: 3px 10px;
+        background: rgba(239, 68, 68, 0.12);
+        color: #FF3366 !important;
+        border: 1px solid rgba(239, 68, 68, 0.35);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        border-radius: 8px;
         text-transform: uppercase;
     }
 
-    .tag-green {
+    .badge-emerald {
         display: inline-block;
-        padding: 3px 8px;
-        background-color: #00ED64;
-        color: #001E2B !important;
-        font-size: 0.68rem;
+        padding: 3px 10px;
+        background: rgba(16, 185, 129, 0.12);
+        color: #00F5A0 !important;
+        border: 1px solid rgba(16, 185, 129, 0.35);
+        font-size: 0.7rem;
         font-weight: 700;
-        letter-spacing: 0.5px;
-        border-radius: 4px;
+        letter-spacing: 0.05em;
+        border-radius: 8px;
         text-transform: uppercase;
     }
 
-    .tag-teal {
+    .badge-amber {
         display: inline-block;
-        padding: 3px 8px;
-        background-color: #00684A;
-        color: #FFFFFF !important;
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        border-radius: 4px;
+        padding: 3px 10px;
+        background: rgba(245, 158, 11, 0.12);
+        color: #F59E0B !important;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        border-radius: 8px;
         text-transform: uppercase;
     }
 
-    .tag-mint-soft {
-        display: inline-block;
-        padding: 4px 10px;
-        background-color: #EDFCF2;
-        color: #00684A !important;
-        font-size: 0.72rem;
-        font-weight: 700;
-        border-radius: 9999px;
-        border: 1px solid rgba(0, 237, 100, 0.3);
-    }
-
-    .tag-red-soft {
-        display: inline-block;
-        padding: 4px 10px;
-        background-color: #FFF1F0;
-        color: #CF1322 !important;
-        font-size: 0.72rem;
-        font-weight: 700;
-        border-radius: 9999px;
-        border: 1px solid #FFA39E;
-    }
-
-    .tag-amber-soft {
-        display: inline-block;
-        padding: 4px 10px;
-        background-color: #FFFBE6;
-        color: #D46B08 !important;
-        font-size: 0.72rem;
-        font-weight: 700;
-        border-radius: 9999px;
-        border: 1px solid #FFE58F;
-    }
-
-    /* Tables & DataFrames */
+    /* Interactive DataFrames */
     [data-testid="stDataFrame"], table {
-        border: 1px solid #E8EDEB !important;
-        border-radius: 8px !important;
-        background-color: #FFFFFF !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 12px !important;
+        background: rgba(15, 23, 42, 0.7) !important;
     }
 
-    /* Custom Scrollbars */
-    ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
+    /* Tabs */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 1.5rem !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
-    ::-webkit-scrollbar-thumb {
-        background: #C1C7C6;
-        border-radius: 3px;
+
+    .stTabs [data-baseweb="tab"] {
+        color: #64748B !important;
+        font-weight: 600 !important;
+        padding: 0.75rem 0.2rem !important;
     }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #00684A;
+
+    .stTabs [aria-selected="true"] {
+        color: #00F2FE !important;
+        border-bottom: 2px solid #00F2FE !important;
     }
     </style>
     """

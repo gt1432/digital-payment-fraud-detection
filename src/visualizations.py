@@ -1,6 +1,6 @@
 ﻿"""
 Digital Payment Fraud Detection - Visualization Module
-MongoDB Dual-Mode Design System
+Sentinel AI: Bespoke FinTech & Threat Radar Design System
 Author: Senior ML Engineer & UI/UX Designer
 """
 import plotly.graph_objects as go
@@ -9,84 +9,82 @@ import pandas as pd
 import numpy as np
 from typing import Dict, Any, Optional
 
-MONGODB_THEME = {
-    'bg': '#FFFFFF',
-    'card_bg': '#FFFFFF',
-    'grid': '#F0F3F2',
-    'border': '#E8EDEB',
-    'text': '#001E2B',
-    'text_muted': '#5C6C75',
-    'green': '#00ED64',
-    'green_dark': '#00684A',
-    'green_soft': '#EDFCF2',
-    'teal_deep': '#001E2B',
-    'purple': '#6C47FF',
-    'orange': '#FA541C',
-    'blue': '#0068FF',
-    'red': '#CF1322',
-    'font': 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+SENTINEL_THEME = {
+    'bg': 'rgba(0,0,0,0)',
+    'card_bg': '#0F172A',
+    'grid': 'rgba(255, 255, 255, 0.05)',
+    'border': 'rgba(255, 255, 255, 0.08)',
+    'text': '#F8FAFC',
+    'text_muted': '#64748B',
+    'cyan': '#00F2FE',
+    'blue': '#4FACFE',
+    'emerald': '#00F5A0',
+    'crimson': '#FF3366',
+    'violet': '#6366F1',
+    'amber': '#F59E0B',
+    'font': 'Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
 }
 
-def apply_mongodb_layout(fig: go.Figure, title: str = "", height: int = 400) -> go.Figure:
+def apply_sentinel_layout(fig: go.Figure, title: str = "", height: int = 400) -> go.Figure:
     """
-    Applies MongoDB clean documentation & analytics styling to any Plotly figure.
+    Applies our signature Sentinel AI obsidian glassmorphic styling to any Plotly figure.
     """
     fig.update_layout(
         title={
             'text': title,
             'y': 0.95,
-            'x': 0.04,
+            'x': 0.03,
             'xanchor': 'left',
             'yanchor': 'top',
             'font': {
-                'family': MONGODB_THEME['font'],
+                'family': SENTINEL_THEME['font'],
                 'size': 14,
-                'color': MONGODB_THEME['text'],
-                'weight': 600
+                'color': SENTINEL_THEME['text'],
+                'weight': 700
             }
         },
-        paper_bgcolor=MONGODB_THEME['bg'],
-        plot_bgcolor=MONGODB_THEME['bg'],
-        font=dict(family=MONGODB_THEME['font'], color=MONGODB_THEME['text'], size=11),
+        paper_bgcolor=SENTINEL_THEME['bg'],
+        plot_bgcolor=SENTINEL_THEME['bg'],
+        font=dict(family=SENTINEL_THEME['font'], color=SENTINEL_THEME['text'], size=11),
         margin=dict(l=40, r=40, t=55, b=40),
         height=height,
         hovermode='closest',
         hoverlabel=dict(
-            bgcolor='#001E2B',
-            bordercolor='#00684A',
-            font=dict(color='#FFFFFF', family=MONGODB_THEME['font'], size=12)
+            bgcolor='#0F172A',
+            bordercolor=SENTINEL_THEME['cyan'],
+            font=dict(color='#FFFFFF', family=SENTINEL_THEME['font'], size=12)
         ),
         legend=dict(
-            font=dict(color=MONGODB_THEME['text_muted'], size=11),
+            font=dict(color=SENTINEL_THEME['text_muted'], size=11),
             orientation='h',
             yanchor='bottom',
             y=1.02,
             xanchor='right',
             x=1,
-            bgcolor='rgba(255,255,255,0)'
+            bgcolor='rgba(0,0,0,0)'
         )
     )
     fig.update_xaxes(
         showgrid=True,
-        gridcolor=MONGODB_THEME['grid'],
+        gridcolor=SENTINEL_THEME['grid'],
         gridwidth=1,
         zeroline=False,
-        linecolor=MONGODB_THEME['border'],
-        tickfont=dict(color=MONGODB_THEME['text_muted'], size=10)
+        linecolor=SENTINEL_THEME['border'],
+        tickfont=dict(color=SENTINEL_THEME['text_muted'], size=10)
     )
     fig.update_yaxes(
         showgrid=True,
-        gridcolor=MONGODB_THEME['grid'],
+        gridcolor=SENTINEL_THEME['grid'],
         gridwidth=1,
         zeroline=False,
-        linecolor=MONGODB_THEME['border'],
-        tickfont=dict(color=MONGODB_THEME['text_muted'], size=10)
+        linecolor=SENTINEL_THEME['border'],
+        tickfont=dict(color=SENTINEL_THEME['text_muted'], size=10)
     )
     return fig
 
 def plot_class_distribution(summary: Optional[Dict[str, Any]] = None, df: Optional[pd.DataFrame] = None) -> go.Figure:
     """
-    1. Genuine vs Fraudulent Transaction Distribution (MongoDB Emerald Donut).
+    1. Genuine vs Fraudulent Transaction Distribution (Cyber Donut).
     """
     if summary:
         genuine = summary.get('total_genuine', 6354407)
@@ -101,30 +99,30 @@ def plot_class_distribution(summary: Optional[Dict[str, Any]] = None, df: Option
     fraud_pct = (fraud / total) * 100
     
     fig = go.Figure(data=[go.Pie(
-        labels=['Genuine Operations', 'Fraudulent Attacks'],
+        labels=['Nominal Operations', 'Fraudulent Exfiltrations'],
         values=[genuine, fraud],
-        hole=0.72,
+        hole=0.74,
         marker=dict(
-            colors=[MONGODB_THEME['green_dark'], MONGODB_THEME['orange']],
-            line=dict(color='#FFFFFF', width=2)
+            colors=[SENTINEL_THEME['cyan'], SENTINEL_THEME['crimson']],
+            line=dict(color='#080C14', width=2)
         ),
         textinfo='percent',
         hoverinfo='label+value+percent',
-        textfont=dict(family=MONGODB_THEME['font'], size=12, color='#FFFFFF')
+        textfont=dict(family=SENTINEL_THEME['font'], size=12, color='#FFFFFF')
     )])
     
     fig.add_annotation(
-        text=f"<b style='font-size:22px;color:#001E2B;'>{fraud_pct:.3f}%</b><br><span style='font-size:11px;color:#5C6C75;font-weight:600;'>FRAUD RATIO</span>",
+        text=f"<b style='font-size:22px;color:#00F2FE;'>{fraud_pct:.3f}%</b><br><span style='font-size:10px;color:#64748B;font-weight:700;letter-spacing:1px;'>INCIDENCE</span>",
         x=0.5, y=0.5,
-        font=dict(family=MONGODB_THEME['font']),
+        font=dict(family=SENTINEL_THEME['font']),
         showarrow=False
     )
     
-    return apply_mongodb_layout(fig, "Class Distribution (Genuine vs Fraud)", height=340)
+    return apply_sentinel_layout(fig, "Class Imbalance Breakdown", height=340)
 
 def plot_fraud_by_type(summary: Optional[Dict[str, Any]] = None, df: Optional[pd.DataFrame] = None) -> go.Figure:
     """
-    2. Fraud Transactions by Transaction Type (MongoDB Bar Chart).
+    2. Fraud Transactions by Transaction Type (Glowing Gradient Bars).
     """
     if summary and 'transaction_types' in summary and 'fraud_by_type' in summary:
         types = list(summary['transaction_types'].keys())
@@ -138,23 +136,26 @@ def plot_fraud_by_type(summary: Optional[Dict[str, Any]] = None, df: Optional[pd
         fraud_counts = [4116, 0, 0, 4097, 0]
         
     fig = go.Figure()
-    bar_colors = [MONGODB_THEME['orange'] if c > 0 else MONGODB_THEME['border'] for c in fraud_counts]
+    bar_colors = [SENTINEL_THEME['crimson'] if c > 0 else 'rgba(255,255,255,0.06)' for c in fraud_counts]
     
     fig.add_trace(go.Bar(
         x=types,
         y=fraud_counts,
-        name='Confirmed Fraud',
-        marker=dict(color=bar_colors, line=dict(color=MONGODB_THEME['border'], width=1)),
+        name='Confirmed Attack Vector',
+        marker=dict(
+            color=bar_colors,
+            line=dict(color=[SENTINEL_THEME['crimson'] if c > 0 else 'rgba(255,255,255,0.1)' for c in fraud_counts], width=1)
+        ),
         text=[f"{c:,}" for c in fraud_counts],
         textposition='outside',
-        textfont=dict(color=MONGODB_THEME['text'], size=11, family=MONGODB_THEME['font'])
+        textfont=dict(color=SENTINEL_THEME['text'], size=11, family=SENTINEL_THEME['font'])
     ))
     
-    return apply_mongodb_layout(fig, "Fraud Incidents by Operation Type", height=340)
+    return apply_sentinel_layout(fig, "Attack Incidence by Operation Type", height=340)
 
 def plot_amount_distribution(df: pd.DataFrame) -> go.Figure:
     """
-    3. Transaction Amount Distribution (Log Scale Boxplot).
+    3. Transaction Amount Spectrum (Log Transformed Boxplot).
     """
     df_plot = df[['amount', 'isFraud']].copy()
     df_plot['log_amount'] = np.log10(np.clip(df_plot['amount'], 1.0, None))
@@ -162,27 +163,27 @@ def plot_amount_distribution(df: pd.DataFrame) -> go.Figure:
     fig = go.Figure()
     fig.add_trace(go.Box(
         x=df_plot[df_plot['isFraud'] == 0]['log_amount'],
-        name='Genuine',
-        marker_color=MONGODB_THEME['green_dark'],
+        name='Nominal',
+        marker_color=SENTINEL_THEME['cyan'],
         boxpoints='outliers',
         jitter=0.2,
-        line=dict(width=1.5, color=MONGODB_THEME['green_dark'])
+        line=dict(width=1.5, color=SENTINEL_THEME['cyan'])
     ))
     fig.add_trace(go.Box(
         x=df_plot[df_plot['isFraud'] == 1]['log_amount'],
         name='Fraudulent',
-        marker_color=MONGODB_THEME['orange'],
+        marker_color=SENTINEL_THEME['crimson'],
         boxpoints='outliers',
         jitter=0.2,
-        line=dict(width=1.5, color=MONGODB_THEME['orange'])
+        line=dict(width=1.5, color=SENTINEL_THEME['crimson'])
     ))
     
-    fig.update_xaxes(title_text="Log10(Amount in USD)", tickvals=[1, 2, 3, 4, 5, 6, 7], ticktext=['$10', '$100', '$1K', '$10K', '$100K', '$1M', '$10M'])
-    return apply_mongodb_layout(fig, "Transaction Value Spectrum (Log Scale)", height=340)
+    fig.update_xaxes(title_text="Log10(Transaction Volume)", tickvals=[1, 2, 3, 4, 5, 6, 7], ticktext=['$10', '$100', '$1K', '$10K', '$100K', '$1M', '$10M'])
+    return apply_sentinel_layout(fig, "Capital Velocity Spectrum (Log Scale)", height=340)
 
 def plot_fraud_trends_by_step(summary: Optional[Dict[str, Any]] = None, df: Optional[pd.DataFrame] = None) -> go.Figure:
     """
-    4. Fraud Trends Across Steps / Hours of Day (MongoDB Smooth Line).
+    4. Diurnal Hourly Trends (Glowing Cyber Curve).
     """
     if summary and 'hourly_fraud' in summary:
         hours = list(range(24))
@@ -202,18 +203,18 @@ def plot_fraud_trends_by_step(summary: Optional[Dict[str, Any]] = None, df: Opti
         x=hours,
         y=fraud_trend,
         mode='lines+markers',
-        name='Fraud Volume',
-        line=dict(color=MONGODB_THEME['orange'], width=2.5, shape='spline'),
-        marker=dict(size=6, color=MONGODB_THEME['orange'])
+        name='Attack Volume',
+        line=dict(color=SENTINEL_THEME['crimson'], width=2.5, shape='spline'),
+        marker=dict(size=6, color=SENTINEL_THEME['crimson'])
     ))
     
-    fig.update_xaxes(title_text="Hour of Day (0 - 23 UTC)", dtick=2)
-    fig.update_yaxes(title_text="Fraud Frequency")
-    return apply_mongodb_layout(fig, "Diurnal Fraud Rhythm", height=340)
+    fig.update_xaxes(title_text="Hour of Day (00:00 - 23:00 UTC)", dtick=2)
+    fig.update_yaxes(title_text="Attack Frequency")
+    return apply_sentinel_layout(fig, "24-Hour Diurnal Threat Rhythm", height=340)
 
 def plot_balance_analysis(df: pd.DataFrame) -> go.Figure:
     """
-    5. Balance Dynamics Scatter (Sender Drain vs Recipient Gain).
+    5. Balance Dynamics (Sender Liquidation vs Mule Influx).
     """
     sample_vis = df.sample(n=min(len(df), 2000), random_state=42).copy()
     sample_vis['orig_drain'] = sample_vis['oldbalanceOrg'] - sample_vis['newbalanceOrig']
@@ -225,8 +226,8 @@ def plot_balance_analysis(df: pd.DataFrame) -> go.Figure:
         x=np.log10(np.clip(gen['orig_drain'], 1.0, None)),
         y=np.log10(np.clip(gen['dest_gain'], 1.0, None)),
         mode='markers',
-        name='Genuine',
-        marker=dict(color=MONGODB_THEME['green_dark'], size=4, opacity=0.35)
+        name='Nominal',
+        marker=dict(color=SENTINEL_THEME['cyan'], size=4, opacity=0.35)
     ))
     
     fra = sample_vis[sample_vis['isFraud'] == 1]
@@ -235,16 +236,16 @@ def plot_balance_analysis(df: pd.DataFrame) -> go.Figure:
         y=np.log10(np.clip(fra['dest_gain'], 1.0, None)),
         mode='markers',
         name='Fraudulent',
-        marker=dict(color=MONGODB_THEME['orange'], size=7, symbol='diamond', opacity=0.9)
+        marker=dict(color=SENTINEL_THEME['crimson'], size=7, symbol='diamond', opacity=0.95)
     ))
     
-    fig.update_xaxes(title_text="Log10(Sender Account Drain)")
-    fig.update_yaxes(title_text="Log10(Recipient Balance Gain)")
-    return apply_mongodb_layout(fig, "Ledger Balance Discrepancy Map", height=380)
+    fig.update_xaxes(title_text="Log10(Sender Capital Drain)")
+    fig.update_yaxes(title_text="Log10(Recipient Inflow Gain)")
+    return apply_sentinel_layout(fig, "Ledger Mutation Dynamics", height=380)
 
 def plot_correlation_heatmap(df: pd.DataFrame) -> go.Figure:
     """
-    6. Feature Correlation Heatmap (MongoDB Emerald Mint Gradient).
+    6. Feature Correlation Matrix (Obsidian Gradient).
     """
     num_cols = ['amount', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'isFraud']
     avail = [c for c in num_cols if c in df.columns]
@@ -255,31 +256,31 @@ def plot_correlation_heatmap(df: pd.DataFrame) -> go.Figure:
         x=corr.columns,
         y=corr.columns,
         colorscale=[
-            [0.0, '#FFFFFF'],
-            [0.3, '#EDFCF2'],
-            [0.7, '#00ED64'],
-            [1.0, '#00684A']
+            [0.0, '#090D16'],
+            [0.3, '#1E293B'],
+            [0.7, '#0284C7'],
+            [1.0, '#00F2FE']
         ],
         text=corr.values,
         texttemplate="%{text}",
-        textfont=dict(family=MONGODB_THEME['font'], size=11, color='#001E2B'),
+        textfont=dict(family=SENTINEL_THEME['font'], size=11, color='#FFFFFF'),
         colorbar=dict(
-            title=dict(text='Corr', font=dict(color=MONGODB_THEME['text_muted'], size=10)),
-            tickfont=dict(color=MONGODB_THEME['text_muted'], size=9)
+            title=dict(text='Corr', font=dict(color=SENTINEL_THEME['text_muted'], size=10)),
+            tickfont=dict(color=SENTINEL_THEME['text_muted'], size=9)
         )
     ))
-    return apply_mongodb_layout(fig, "Feature Correlation Matrix", height=380)
+    return apply_sentinel_layout(fig, "Telemetry Correlation Heatmap", height=380)
 
 def plot_model_comparison(metrics_payload: Dict[str, Any]) -> go.Figure:
     """
-    7. Multi-Algorithm Evaluation Benchmark (MongoDB Category Accents).
+    7. Multi-Algorithm Benchmark Comparison.
     """
     models_dict = metrics_payload.get('models', {})
     model_names = list(models_dict.keys())
     
     metric_keys = ['accuracy', 'precision', 'recall', 'f1_score', 'roc_auc']
     display_names = ['Accuracy', 'Precision', 'Recall', 'F1-Score', 'ROC-AUC']
-    colors = [MONGODB_THEME['teal_deep'], MONGODB_THEME['purple'], MONGODB_THEME['green_dark'], MONGODB_THEME['green'], MONGODB_THEME['blue']]
+    colors = [SENTINEL_THEME['text_muted'], SENTINEL_THEME['violet'], SENTINEL_THEME['emerald'], SENTINEL_THEME['cyan'], SENTINEL_THEME['blue']]
     
     fig = go.Figure()
     for i, (m_key, d_name) in enumerate(zip(metric_keys, display_names)):
@@ -291,28 +292,28 @@ def plot_model_comparison(metrics_payload: Dict[str, Any]) -> go.Figure:
             marker_color=colors[i],
             text=[f"{v:.1f}%" for v in values],
             textposition='outside',
-            textfont=dict(size=9, color=MONGODB_THEME['text'])
+            textfont=dict(size=9, color=SENTINEL_THEME['text'])
         ))
         
     fig.update_layout(barmode='group')
     fig.update_yaxes(range=[0, 115], title_text="Score (%)")
-    return apply_mongodb_layout(fig, "Algorithm Evaluation Benchmark", height=420)
+    return apply_sentinel_layout(fig, "Algorithm Evaluation Benchmark", height=420)
 
 def plot_confusion_matrix(cm_data: list, model_name: str = "Best Model") -> go.Figure:
     """
-    8. Interactive Annotated Confusion Matrix (MongoDB Mint Surfaces).
+    8. Interactive Confusion Matrix (Obsidian Slate).
     """
     z_matrix = cm_data
-    labels = ['Genuine (0)', 'Fraud (1)']
+    labels = ['Nominal (0)', 'Fraud (1)']
     
     tn, fp = z_matrix[0][0], z_matrix[0][1]
     fn, tp = z_matrix[1][0], z_matrix[1][1]
     
     annot_text = [
-        [f"TN: {tn:,}<br><span style='font-size:10px;color:#5C6C75'>TRUE NEGATIVE</span>",
-         f"FP: {fp:,}<br><span style='font-size:10px;color:#FA541C'>FALSE POSITIVE</span>"],
-        [f"FN: {fn:,}<br><span style='font-size:10px;color:#FA541C'>FALSE NEGATIVE</span>",
-         f"TP: {tp:,}<br><span style='font-size:10px;color:#00684A'>TRUE POSITIVE</span>"]
+        [f"TN: {tn:,}<br><span style='font-size:10px;color:#64748B'>TRUE NEGATIVE</span>",
+         f"FP: {fp:,}<br><span style='font-size:10px;color:#FF3366'>FALSE POSITIVE</span>"],
+        [f"FN: {fn:,}<br><span style='font-size:10px;color:#FF3366'>FALSE NEGATIVE</span>",
+         f"TP: {tp:,}<br><span style='font-size:10px;color:#00F5A0'>TRUE POSITIVE</span>"]
     ]
     
     fig = go.Figure(data=go.Heatmap(
@@ -320,43 +321,43 @@ def plot_confusion_matrix(cm_data: list, model_name: str = "Best Model") -> go.F
         x=labels,
         y=labels,
         colorscale=[
-            [0.0, '#FFFFFF'],
-            [0.5, '#EDFCF2'],
-            [1.0, '#00ED64']
+            [0.0, '#0E1626'],
+            [0.5, '#1E293B'],
+            [1.0, '#00F2FE']
         ],
         text=annot_text,
         texttemplate="%{text}",
-        textfont=dict(family=MONGODB_THEME['font'], size=12, color='#001E2B'),
+        textfont=dict(family=SENTINEL_THEME['font'], size=12, color='#FFFFFF'),
         showscale=False
     ))
     
-    fig.update_xaxes(title_text="Predicted Class", side="bottom")
-    fig.update_yaxes(title_text="Actual Class", autorange="reversed")
-    return apply_mongodb_layout(fig, f"Confusion Matrix: {model_name}", height=380)
+    fig.update_xaxes(title_text="Predicted Telemetry", side="bottom")
+    fig.update_yaxes(title_text="Ground Truth State", autorange="reversed")
+    return apply_sentinel_layout(fig, f"Confusion Matrix: {model_name}", height=380)
 
 def plot_roc_curves(roc_data: Dict[str, Any]) -> go.Figure:
     """
-    9. Receiver Operating Characteristic (ROC) Comparison Curves.
+    9. ROC Discrimination Curves.
     """
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=[0, 1], y=[0, 1],
         mode='lines',
-        name='Random Baseline (AUC = 0.50)',
-        line=dict(color='#C1C7C6', dash='dash', width=1.5)
+        name='Chance Line (AUC = 0.50)',
+        line=dict(color='rgba(255,255,255,0.15)', dash='dash', width=1.5)
     ))
     
     colors = {
-        'Logistic Regression': MONGODB_THEME['text_muted'],
-        'Decision Tree': MONGODB_THEME['blue'],
-        'Random Forest': MONGODB_THEME['green_dark'],
-        'Isolation Forest': MONGODB_THEME['purple']
+        'Logistic Regression': SENTINEL_THEME['text_muted'],
+        'Decision Tree': SENTINEL_THEME['blue'],
+        'Random Forest': SENTINEL_THEME['cyan'],
+        'Isolation Forest': SENTINEL_THEME['violet']
     }
     
     for m_name, curve in roc_data.items():
         fpr = curve.get('fpr', [0, 1])
         tpr = curve.get('tpr', [0, 1])
-        c = colors.get(m_name, MONGODB_THEME['green_dark'])
+        c = colors.get(m_name, SENTINEL_THEME['cyan'])
         fig.add_trace(go.Scatter(
             x=fpr,
             y=tpr,
@@ -366,45 +367,45 @@ def plot_roc_curves(roc_data: Dict[str, Any]) -> go.Figure:
         ))
         
     fig.update_xaxes(title_text="False Positive Rate (1 - Specificity)", range=[-0.02, 1.02])
-    fig.update_yaxes(title_text="True Positive Rate (Recall)", range=[-0.02, 1.05])
-    return apply_mongodb_layout(fig, "ROC Curves (Discrimination Capacity)", height=400)
+    fig.update_yaxes(title_text="True Positive Rate (Sensitivity)", range=[-0.02, 1.05])
+    return apply_sentinel_layout(fig, "ROC Curves (Discrimination Capacity)", height=400)
 
 def plot_fraud_risk_gauge(probability: float) -> go.Figure:
     """
-    10. MongoDB Threat Vector Gauge.
+    10. Sentinel Cyber Threat Dial.
     """
     pct = probability * 100
     if probability < 0.30:
-        bar_color = MONGODB_THEME['green']
-        level_text = "LOW RISK"
+        bar_color = SENTINEL_THEME['emerald']
+        level_text = "NOMINAL // LOW RISK"
     elif probability < 0.70:
-        bar_color = MONGODB_THEME['orange']
-        level_text = "MEDIUM RISK"
+        bar_color = SENTINEL_THEME['amber']
+        level_text = "ELEVATED // MEDIUM RISK"
     else:
-        bar_color = MONGODB_THEME['red']
-        level_text = "HIGH / CRITICAL RISK"
+        bar_color = SENTINEL_THEME['crimson']
+        level_text = "CRITICAL // HIGH RISK"
         
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
         value=pct,
-        number={'suffix': "%", 'font': {'color': MONGODB_THEME['text'], 'family': MONGODB_THEME['font'], 'size': 32, 'weight': 700}},
-        title={'text': f"THREAT VECTOR: {level_text}", 'font': {'color': bar_color, 'family': MONGODB_THEME['font'], 'size': 13, 'weight': 700}},
+        number={'suffix': "%", 'font': {'color': SENTINEL_THEME['text'], 'family': SENTINEL_THEME['font'], 'size': 32, 'weight': 700}},
+        title={'text': f"THREAT LEVEL: {level_text}", 'font': {'color': bar_color, 'family': SENTINEL_THEME['font'], 'size': 12, 'weight': 700}},
         gauge={
-            'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': MONGODB_THEME['border'], 'tickfont': {'color': MONGODB_THEME['text_muted'], 'size': 10}},
+            'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': SENTINEL_THEME['border'], 'tickfont': {'color': SENTINEL_THEME['text_muted'], 'size': 10}},
             'bar': {'color': bar_color, 'thickness': 0.28},
-            'bgcolor': '#F9FBFA',
+            'bgcolor': 'rgba(15, 23, 42, 0.6)',
             'borderwidth': 1,
-            'bordercolor': MONGODB_THEME['border'],
+            'bordercolor': SENTINEL_THEME['border'],
             'steps': [
-                {'range': [0, 30], 'color': '#EDFCF2'},
-                {'range': [30, 70], 'color': '#FFFBE6'},
-                {'range': [70, 100], 'color': '#FFF1F0'}
+                {'range': [0, 30], 'color': 'rgba(16, 185, 129, 0.12)'},
+                {'range': [30, 70], 'color': 'rgba(245, 158, 11, 0.12)'},
+                {'range': [70, 100], 'color': 'rgba(239, 68, 68, 0.15)'}
             ],
             'threshold': {
-                'line': {'color': MONGODB_THEME['teal_deep'], 'width': 3},
+                'line': {'color': '#FFFFFF', 'width': 3},
                 'thickness': 0.8,
                 'value': pct
             }
         }
     ))
-    return apply_mongodb_layout(fig, "Computed Risk Probability", height=280)
+    return apply_sentinel_layout(fig, "Threat Probability Vector", height=280)
